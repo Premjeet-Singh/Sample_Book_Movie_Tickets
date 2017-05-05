@@ -55,6 +55,8 @@ module.exports.routes = {
 
 //===========  routes for users Controller  ===================================
   'GET /test': {controller: "test", action: "test"},
+  'POST /upload': {controller: "test", action: "upload"},
+  'GET /img': { view: 'uploadImage' }, 
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
