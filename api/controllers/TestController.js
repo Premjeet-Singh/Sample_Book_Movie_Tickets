@@ -14,7 +14,7 @@ test: function(req, res){
 	res.send("This is test route");
 },
 
-upload: function(req, res){
+// upload: function(req, res){
 	// var sampleFile = req.files.sampleFile;
 	// var sampleFile = req.file('sampleFile');
 	// var dir = '/assets/images/pic';
@@ -47,23 +47,23 @@ upload: function(req, res){
 //   });
 // });
 
-req.file('sampleFile').upload({dirname : process.cwd() + '/assets/images/uploads/'}, function (err, uploadedFiles) {
-              if (err) return res.send(500, err);
- var abc = 'aaa'
-                var filename = uploadedFiles[0].fd.substring(uploadedFiles[0].fd.lastIndexOf('/')+1);
-                var uploadLocation = process.cwd() +'/assets/images/uploads/' + filename;
-                var tempLocation = process.cwd() + '/.tmp/public/images/uploads/' + filename;
+// req.file('sampleFile').upload({dirname : process.cwd() + '/assets/images/uploads/'}, function (err, uploadedFiles) {
+//               if (err) return res.send(500, err);
+//  var abc = 'aaa'
+//                 var filename = uploadedFiles[0].fd.substring(uploadedFiles[0].fd.lastIndexOf('/')+1);
+//                 var uploadLocation = process.cwd() +'/assets/images/uploads/' + filename;
+//                 var tempLocation = process.cwd() + '/.tmp/public/images/uploads/' + filename;
  
-                //Copy the file to the temp folder so that it becomes available immediately
-                fs.createReadStream(uploadLocation).pipe(fs.createWriteStream(tempLocation));
+//                 //Copy the file to the temp folder so that it becomes available immediately
+//                 fs.createReadStream(uploadLocation).pipe(fs.createWriteStream(tempLocation));
  
-                //Redirect or do something
-                // res.view();
-                console.log(filename);
-                res.send("done: "+uploadLocation)
-            });
+//                 //Redirect or do something
+//                 // res.view();
+//                 console.log(filename);
+//                 res.send("done: "+uploadLocation)
+//             });
 
-}
+// }
   // req.file('userPhoto').upload({
   //  dirname:'C:/Users/RAKESH KUMAR/Desktop/authentication/assets/images/'},function(err,files){
   //  sails.log.debug('file is :: ', +files);
@@ -73,8 +73,78 @@ req.file('sampleFile').upload({dirname : process.cwd() + '/assets/images/uploads
   //     res.json({status:200,file:files});
   //  });
 
+ upload: function (req, res) {
+    var file = req.file('sampleFile'),
+      id = sid.generate(),
+      fileName = id + "." + fileExtension(safeFilename(file.name)),
+      dirPath = UPLOAD_PATH + '/' + id,
+      filePath = dirPath + '/' + fileName;
+
+    try {
+      mkdirp.sync(dirPath, 0755);
+    } catch (e) {
+      console.log(e);
+    }
+
+    fs.readFile(file.path, function (err, data) {
+      if (err) {
+        res.json({'error': 'could not read file'});
+      } else {
+        fs.writeFile(filePath, data, function (err) {
+          if (err) {
+            res.json({'error': 'could not write file to storage'});
+          } else {
+            processImage(id, fileName, filePath, function (err, data) {
+              if (err) {
+                res.json(err);
+              } else {
+                res.json(data);
+              }
+            });
+          }
+        })
+      }
+    });
+  },
+
+  _config: {}
 };
 
+var UPLOAD_PATH = 'assets/images';
+
+// Setup id generator
+sid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
+sid.seed(42);
+
+function safeFilename(name) {
+  name = name.replace(/ /g, '-');
+  name = name.replace(/[^A-Za-z0-9-_\.]/g, '');
+  name = name.replace(/\.+/g, '.');
+  name = name.replace(/-+/g, '-');
+  name = name.replace(/_+/g, '_');
+  return name;
+}
+
+function fileMinusExt(fileName) {
+  return fileName.split('.').slice(0, -1).join('.');
+}
+
+function fileExtension(fileName) {
+  return fileName.split('.').slice(-1);
+}
+
+// Where you would do your processing, etc
+// Stubbed out for now
+function processImage(id, name, path, cb) {
+  console.log('Processing image');
+
+  cb(null, {
+    'result': 'success',
+    'id': id,
+    'name': name,
+    'path': path
+  });
+}
 
 
 // sampleFile = req.files.sampleFile;
