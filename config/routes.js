@@ -49,6 +49,12 @@ module.exports.routes = {
   // 'GET /logout': {controller: "users", action: "logout"},                  // works well using token
   'GET /logout': {controller: "auth", action: "logout"},             //  updated using passport
 
+
+
+
+
+//===========  routes for users Controller  ===================================
+  'GET /test': {controller: "test", action: "test"},
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

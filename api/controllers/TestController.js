@@ -6,6 +6,9 @@
  */
 
 module.exports = {
-	
+// ======================================================
+test: function(req, res){
+	res.send("This is test route");
+}
 };
 

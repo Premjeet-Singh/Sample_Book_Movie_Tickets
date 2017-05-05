@@ -1,4 +1,4 @@
-# justintern.com
+# Sample_Book_Movie_Tickets
 
-### justintern2 => core2
+### This is a sample application to book movie tickets
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
