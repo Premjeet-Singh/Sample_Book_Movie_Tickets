@@ -36,7 +36,8 @@ module.exports.routes = {
   'GET /register': { view: 'register' },
 
   'GET /login': { view: 'login' },
-  'GET /movie': { view: 'movie' },
+  'GET /movie': { view: 'page/movie' },
+  'GET /movieupload': { view: 'uploader/movieUpload' },
 
 
 
