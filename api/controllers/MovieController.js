@@ -68,6 +68,24 @@ movieList: function(req, res){
 		}
 	})
 },
+
+
+// =================================================================
+// ==== Function to get particular movie detail ===========
+// GET route /movie/:name
+movieParticular: function(req, res){
+	var name = req.param('name');        // name is movie name
+	Movie.findOne({name: name}, function(err, obj){
+		if(!obj){
+			res.send("Movie Not Found")
+		} else {
+			var str= obj.name.split(" ")[0];
+			console.log("nm: ", str)
+			// res.send(obj);
+			res.view("page/detail",{data: obj, name: str})
+		}
+	})
+}
 };
 
               // var result = skill.replace (/[, ]+/g, " ").trim();

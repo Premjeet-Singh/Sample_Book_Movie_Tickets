@@ -1,0 +1,163 @@
+<% include nav %>
+<% if(typeof(data)!='undefined') { %>
+<div class="container">
+        <div class="row">
+
+            <div class="col-xs-offset-2 col-xs-8 wrap">
+            	<div class='img1 over'> 
+                    <img class='img' src="/images/pics/<%= name %>.jpg" alt="Movie View" style="width:699px;height:253px;"><div class='pull-left'><span class='movieName'><%= data.name %></span>
+                        <p class='language'><%= data.language %> &nbsp;&nbsp; <span class='movieType'><%= data.type %></span> &nbsp;&nbsp; <span class='dimension'><%= data.dimension %></span></p>
+                    </div>
+                    <a href="#"class="btn btn-info pull-right book">Book</a>
+                </div>
+
+            <div class="row inner">
+                <div class="col-xs-3 key">
+                RELEASE DATE
+                </div>
+                <div class="col-xs-4 value">
+                <%= data.releaseDate %>
+                </div>
+            </div>
+            <div class="row inner">
+                <div class="col-xs-3 key">
+                RUN TIME
+                </div>
+                <div class="col-xs-4 value">
+                <%= data.runTime %>
+                </div>
+            </div>
+            <div class="row inner">
+                <div class="col-xs-3 key">
+                DIRECTOR
+                </div>
+                <div class="col-xs-4 value">
+                <%= data.director %>
+                </div>
+            </div>
+            <div class="row inner">
+                <div class="col-xs-3 key">
+                GENRE
+                </div>
+                <div class="col-xs-4 value">
+                <%= data.genre %>
+                </div>
+            </div>
+            <div class="row inner">
+                <div class="col-xs-3 key">
+                LANGUAGE
+                </div>
+                <div class="col-xs-4 value">
+                <%= data.language %>
+                </div>
+            </div>
+            <div class="row inner">
+                <div class="col-xs-3 key">
+                CAST
+                </div>
+                <div class="col-xs-5 value">
+                <%= data.cast %>
+                </div>
+            </div>
+            <div class="row inner">
+                <div class="col-xs-3 key">
+                SYNOPSIS
+                </div>
+            <!-- <div class="col-xs-7 value"> -->
+                <div class="col-xs-7 value" style='text-align: justify;'>
+                <%= data.synopsis %>
+                </div>
+            </div><br><br>
+<h3 class='watch'>Watch Trailor <span class="glyphicon glyphicon-hand-down"></span></h3>
+<div class="row video">
+    <video width="620" height="340" controls>
+      <source src="video/sample.mp4" type="video/mp4">
+      <!-- <source src="movie.ogg" type="video/ogg"> -->
+      Your browser does not support the video tag.
+    </video>
+</div>
+            </div>
+                                  
+        </div>
+    </div>
+<% } %>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+<style>
+
+.container{
+    margin: 28px auto;
+}
+.over{
+    width: 770px auto;
+    height: auto;
+    background-size: 450px 250px;
+    background-repeat: no-repeat;
+    background: #f5f5f0;
+    margin-top: 28px;
+    /*border: 2px solid red;*/
+    padding: 18px;
+
+    overflow: auto;
+    /*overflow: auto;*/
+}
+.wrap{
+    /*background: #d1d1e0;*/
+    height: auto;
+    padding: 20px;
+                box-shadow: 0px 0px 25px #888888;
+}
+
+.book{
+margin: 16px 15px;
+}
+.inner{
+/*     background: gray; */
+}
+.key, .value{
+    font-size: 18px;
+    margin: 12px;
+    color: #990000;
+    letter-spacing: 1px;
+}
+.value{
+    color: black;
+}
+
+.movieType{
+    border: 2px solid black;
+    border-radius: 20%;
+    padding: 2px;
+}
+.movieName, .language{
+    color: #0086b3;
+    font-weight: bolder;
+    font-size: 17px;
+    letter-spacing: 1px;
+    padding: 2px 0px 0px 15px;
+}
+.pull-left{
+    margin-top: 10px;
+}
+.language{
+    color: black;
+}
+.video{
+    padding: 10px;
+    margin: 0px auto;
+    width: 730px;
+    /*background: red;*/
+}
+video{
+    width: 700px;
+}
+.watch{
+    margin-left: 150px;
+    font-weight: bolder;
+}
+</style>
