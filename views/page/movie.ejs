@@ -1,35 +1,41 @@
 <% include nav %>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<% if(typeof(data)!='undefined') { %>
     <div class="container">
         <div class="row">
+        <% for(var i=0; i<data.length; i++) {%>
             <!-- <div class="col-xs-4 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
             <div class='content'>
+            <% if(i%2==0) { %>
                 <div class="col-xs-offset-1 col-xs-5 wrap">
                     <div class='img2 over'> 
                         <!-- <a href="#"class="btn btn-success">Book</a> -->
-                        <img class='img' src="/images/bahubali.png" alt="Movie View" style="width:440px;height:233px;"><div class='pull-left'><span class='movieName'>Bahubali</span>
-                            <p class='language'>Hindi &nbsp;&nbsp; <span class='movieType'>A</span> &nbsp;&nbsp; <span class='dimension'>3D</span></p>
+                        <img class='img' src="/images/pics/<%= name[i] %>.jpg" alt="Movie View" style="width:440px;height:233px;"><div class='pull-left'><span class='movieName'><%= data[i].name %></span>
+                            <p class='language'><%= data[i].language %> &nbsp;&nbsp; <span class='movieType'><%= data[i].type %></span> &nbsp;&nbsp; <span class='dimension'><%= data[i].dimension %></span></p>
                         </div>
                         <!-- <div class='pull-left'><span><b>Bahubali</b></span></div> -->
                         <a href="#"class="btn btn-info pull-right book">Book</a>
                         <a href="detail.html"class="btn btn-success pull-right detail">Detail</a>
                     </div>
                 </div>
+            <% } else { %>
                 <div class="col-xs-5 wrap">
                     <div class='img1 over'> 
-                        <img class='img' src="images/bahubali.png" alt="Movie View" style="width:440px;height:233px;"><div class='pull-left'><span class='movieName'>Bahubali</span>
-                            <p class='language'>Hindi &nbsp;&nbsp; <span class='movieType'>UA</span> &nbsp;&nbsp; <span class='dimension'>3D</span></p>
+                        <img class='img' src="images/pics/<%= name[i] %>.jpg" alt="Movie View" style="width:440px;height:233px;"><div class='pull-left'><span class='movieName'><%= data[i].name %></span>
+                            <p class='language'><%= data[i].language %> &nbsp;&nbsp; <span class='movieType'><%= data[i].type %></span> &nbsp;&nbsp; <span class='dimension'><%= data[i].dimension %></span></p>
                         </div>
                         <a href="#"class="btn btn-info pull-right book">Book</a>
                         <a href="#"class="btn btn-success pull-right detail">Detail</a>
                     </div>
-                </div>                
-            </div>             
+                </div>
+            <% } %>                
+            </div>   
+        <% } %>          
         </div>
     </div>
 
+<% } %>
 
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
@@ -73,7 +79,7 @@
 .movieName, .language{
     color: #0086b3;
     font-weight: bolder;
-    font-size: 17px;
+    font-size: 13px;
     letter-spacing: 1px;
     padding: 2px 0px 0px 15px;
 }

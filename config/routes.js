@@ -36,10 +36,14 @@ module.exports.routes = {
   'GET /register': { view: 'register' },
 
   'GET /login': { view: 'login' },
-  'GET /movie': { view: 'page/movie' },
+  // 'GET /movie': { view: 'page/movie' },
   'GET /movieupload': { view: 'uploader/movieUpload' },
 
 
+
+//===========  routes for Movie Controller  ===================================
+  'POST /movieupload': {controller: "movie", action: "movieUpload"},
+  'GET /movie': {controller: "movie", action: "movieList"},
 
 
 //================ Users & Auth Controller============================================

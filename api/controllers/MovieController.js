@@ -6,6 +6,69 @@
  */
 
 module.exports = {
-	
+// =====================================================
+// === Function to Upload Movie details ============
+movieUpload: function(req, res){
+var name= req.body.name;
+var language= req.body.language;
+var type= req.body.type;
+var dimension= req.body.dimension;
+var releaseDate= req.body.releaseDate;
+var runTime= req.body.runTime;
+var director= req.body.director;
+var genre= req.body.genre;
+var cast= req.body.cast;
+var synopsis= req.body.synopsis;
+var city= req.body.city;
+var result = city.replace (/[, ]+/g, " ").trim();
+var str=result.split(" ");
+
+var query = {
+	name:name, language:language, type:type,
+	dimension:dimension, releaseDate:releaseDate, runTime:runTime,
+	director:director, genre:genre, cast:cast,
+	synopsis:synopsis, city:str, status:'open',
+}
+Movie.findOne({name: name}, function(err, movie){
+	if(!movie){
+		Movie.create(query, function(err, obj){
+			if(!obj){
+				res.send("something went wrong");
+			} else {
+				res.send(obj)
+			}
+		})
+	} else {
+		res.send("Movie already exist")
+	}
+})
+
+
+// res.send(query);
+},
+
+
+// ==================================================================
+// === Function to get list of all movies ========================
+// GET route /movie
+movieList: function(req, res){
+	Movie.find({}, function(err, obj){
+		if(obj==''){
+			res.send("Movies not found")
+		} else {
+			var name = [];
+			// var name = obj[0].name.split(" ")[0];
+			for(var i=0; i<obj.length;i++){
+				name.push(obj[i].name.split(" ")[0])
+			}
+			console.log(name)
+
+			// res.send(obj);
+			res.view("page/movie",{data: obj, name: name})
+		}
+	})
+},
 };
 
+              // var result = skill.replace (/[, ]+/g, " ").trim();
+              // var str=result.split(" ");

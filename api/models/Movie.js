@@ -9,9 +9,9 @@ module.exports = {
 
   attributes: {
     name:                      { type: 'string' },
-    language:                  { type: 'array' },
+    language:                  { type: 'string' },
     type:                      { type: 'string' },
-    dimension:                 { type: 'array' },
+    dimension:                 { type: 'string' },
     releaseDate:               { type: 'string' },
     runTime:                   { type: 'string' },
     director:                  { type: 'string' },
