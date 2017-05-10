@@ -15,7 +15,7 @@
                             <p class='language'><%= data[i].language %> &nbsp;&nbsp; <span class='movieType'><%= data[i].type %></span> &nbsp;&nbsp; <span class='dimension'><%= data[i].dimension %></span></p>
                         </div>
                         <!-- <div class='pull-left'><span><b>Bahubali</b></span></div> -->
-                        <a href="#"class="btn btn-info pull-right book">Book</a>
+                        <a href="/book/<%= data[i].name %>"class="btn btn-info pull-right book">Book</a>
                         <a href="/movie/<%= data[i].name %>"class="btn btn-success pull-right detail">Detail</a>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         <img class='img' src="images/pics/<%= name[i] %>.jpg" alt="Movie View" style="width:440px;height:233px;"><div class='pull-left'><span class='movieName'><%= data[i].name %></span>
                             <p class='language'><%= data[i].language %> &nbsp;&nbsp; <span class='movieType'><%= data[i].type %></span> &nbsp;&nbsp; <span class='dimension'><%= data[i].dimension %></span></p>
                         </div>
-                        <a href="#"class="btn btn-info pull-right book">Book</a>
+                        <a href="/book/<%= data[i].name %>"class="btn btn-info pull-right book">Book</a>
                         <a href="/movie/<%= data[i].name %>"class="btn btn-success pull-right detail">Detail</a>
                     </div>
                 </div>

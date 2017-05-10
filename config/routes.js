@@ -45,6 +45,7 @@ module.exports.routes = {
   'POST /movieupload': {controller: "movie", action: "movieUpload"},
   'GET /movie': {controller: "movie", action: "movieList"},
   'GET /movie/:name': {controller: "movie", action: "movieParticular"},
+  'GET /book/:name': {controller: "movie", action: "getBookMovie"},
 
 
 //================ Users & Auth Controller============================================

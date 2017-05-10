@@ -85,7 +85,26 @@ movieParticular: function(req, res){
 			res.view("page/detail",{data: obj, name: str})
 		}
 	})
-}
+},
+
+
+// ================================================================
+// === Function to get Book Movie Page of particular movie
+getBookMovie: function(req, res){
+	var name = req.param('name');
+	Movie.findOne({name: name}, function(err, obj){
+		if(!obj){
+			res.send("Movie not found");
+		} else {
+			var str= obj.name.split(" ")[0]; 
+			console.log("str: ", str)
+			// res.send(obj)
+			res.view("page/book",{data: obj, name: str})
+		}
+	})
+},
+
+
 };
 
               // var result = skill.replace (/[, ]+/g, " ").trim();
