@@ -37,15 +37,24 @@ module.exports.routes = {
 
   'GET /login': { view: 'login' },
   // 'GET /movie': { view: 'page/movie' },
-  'GET /movieupload': { view: 'uploader/movieUpload' },
+
+
 
 
 
 //===========  routes for Movie Controller  ===================================
+  'GET /movieupload': { view: 'uploader/movieUpload' },
   'POST /movieupload': {controller: "movie", action: "movieUpload"},
   'GET /movie': {controller: "movie", action: "movieList"},
   'GET /movie/:name': {controller: "movie", action: "movieParticular"},
   'GET /book/:name': {controller: "movie", action: "getBookMovie"},
+
+
+
+//===========  routes for City Controller  ===================================
+  'GET /hallincity': { view: 'uploader/hallInCity' },
+  'POST /hallincity': {controller: "city", action: "hallInCity"},
+
 
 
 //================ Users & Auth Controller============================================
