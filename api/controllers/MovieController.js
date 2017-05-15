@@ -80,7 +80,7 @@ movieParticular: function(req, res){
 			res.send("Movie Not Found")
 		} else {
 			var str= obj.name.split(" ")[0];
-			console.log("nm: ", str)
+			console.log("nm: ", str);
 			// res.send(obj);
 			res.view("page/detail",{data: obj, name: str})
 		}
