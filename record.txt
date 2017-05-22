@@ -1,316 +1,149 @@
-/* 1 */
-{
-    "_id" : ObjectId("5850db4c8479d6880a7b3870"),
-    "owner" : "5850db4c8479d6880a7b386f",
-    "createdAt" : ISODate("2016-12-14T05:40:28.060Z"),
-    "updatedAt" : ISODate("2016-12-14T05:40:28.060Z"),
-    "education" : [ 
-        {
-            "collegeName" : "VIT",
-            "degree" : "PG",
-            "field" : "COMPUTER",
-            "duration" : "2014-16"
-        }, 
-        {
-            "collegeName" : "GCR",
-            "degree" : "UG",
-            "field" : "I.T",
-            "duration" : "2011-14"
-        }
-    ],
-    "project" : [ 
-        {
-            "name" : "Project Name 1",
-            "description" : "Project description 1",
-            "duration" : "2 months",
-            "link" : "Project  link 1"
-        }, 
-        {
-            "name" : "Project Name 2",
-            "description" : "Project description 2",
-            "duration" : "3 months",
-            "link" : "Project  link 2"
-        }
-    ],
-    "skill" : [ 
-        "c", 
-        "c++", 
-        "Java", 
-        "HTML", 
-        "css"
-    ],
-    "certification" : [ 
-        {
-            "certificationId" : "java1234",
-            "name" : "java",
-            "description" : "certification description part",
-            "dateOfCertification" : "12 aug 2015"
-        }, 
-        {
-            "certificationId" : "php1122",
-            "name" : "php",
-            "description" : "certification description part",
-            "dateOfCertification" : "11 nov 2015"
-        }
-    ],
-    "publication" : [ 
-        {
-            "name" : "IEEE",
-            "description" : "publication description part",
-            "dateOfPublication" : "11 nov 2015",
-            "link" : "publication link part"
-        }, 
-        {
-            "name" : "IJECSE",
-            "description" : "publication description part",
-            "dateOfPublication" : "11 nov 2015",
-            "link" : "publication link part2"
-        }
-    ],
-    "language" : [ 
-        {
-            "name" : "language name1",
-            "level" : "language level part"
-        }, 
-        {
-            "name" : "language name2",
-            "level" : "language level part"
-        }
-    ],
-    "onlineProfiles" : [ 
-        {
-            "link" : "onlineProfiles link",
-            "type" : "blog"
-        }, 
-        {
-            "link" : "onlineProfiles  website link",
-            "type" : "website"
-        }
-    ],
-    "skill2" : [ 
-        {
-            "name" : "c",
-            "level" : "good"
-        }, 
-        {
-            "name" : "c++",
-            "level" : "good"
-        }, 
-        {
-            "name" : "java",
-            "level" : "basic"
-        }
-    ]
-}
-
-//=====================================================================
-//====================== jquery append code 1 ======================
-//=====================================================================
-
-
-        $('.array').on("click",function(e){
-
-        e.preventDefault();
-
-        var id=parseInt($('a').attr('id'));
-        var upr = id, lwr = id-1;
-        var x = upr + 1;
-        // alert(upr);
-
-        // var input=parseInt($('.inp').val());
-        // var comment=parseInt($('.com').val());
-        // $('#test').attr('id')
-        var arr=new Array();
-        // $('.append').html('');
-        for (var i = lwr; i < upr; i++) {
-            $('.append').html('');
-
-        // alert(x);
-          // console.log(i);
-
-               $('.append').append("College Name : <input type='text' name='edu["+i+"][collegeName]'><br><br>");
-               $('.append').append("Degree : <input type='text' name='edu["+i+"][degree]'><br><br>");
-               $('.append').append("Field Of Study : <input type='text' name='edu["+i+"][field]'><br><br>");
-               $('.append').append("Duration : <input type='text' name='edu["+i+"][duration]'><br><br>");
-
-            $('.append').append("<br>");
-
-        }
-
-         $('.append').append("<input type='hidden' name='length' value="+i+">");
-
-        })
-
-//=====================================================================
-//====================== End of jquery append code 1 ===============
-//=====================================================================
-
-
-
-
-//=========================================================
-//====================== jquery append code 2 ===============
-//=========================================================
-
-
-
-$('.array').on("click",function(e){
-
-e.preventDefault();
-
-var id=parseInt($('a').attr('id'));
-var upr = id, lwr = id-1;
-var x = upr + 1;
-alert(upr);
-$('a').prop('id', 3);
-
-// var input=parseInt($('.inp').val());
-// var comment=parseInt($('.com').val());
-// $('#test').attr('id')
-var arr=new Array();
-$('.append').html('');
-for (var i = lwr; i < upr; i++) {
-
-// alert(x);
-  // console.log(i);
-
-    $('.append').append("<div class='append"+i+"'>");
-
-$('.append"'+i+'"').html('');
-
-       $('.append"'+i+'"').append("College Name : <input type='text' name='edu["+i+"]collegeName'><br><br>");
-       $('.append"'+i+'"').append("Degree : <input type='text' name='edu["+i+"]degree'><br><br>");
-       $('.append"'+i+'"').append("Field Of Study : <input type='text' name='edu["+i+"]field'><br><br>");
-       $('.append"'+i+'"').append("Duration : <input type='text' name='edu["+i+"]duration'><br><br>");
-
-       // $('.append').append('Add More : <a href="#" class="array" id="'+x+'"> Add </a> <br><br>');
-
-    // $('.append"'+i+'"').append("</div>");
-    $('.append').append("<br>");
-
-}
-
- $('.append').append("<input type='hidden' name='length' value="+i+">");
-
-})
-
-
-// <a href="#" class="array"> Add </a> <br><br>
-
-// $(this).prev('li').prop('id', 'newId');
-
-//=========================================================
-//====================== End jquery append code 2 ===============
-//=========================================================
-
-
-
-
-
-//=========================================================
-//====================== edutest code ===============
-//=========================================================
-
-
-    edutest: function(req, res){
-         // var owner = req.query.owner;
-         // var id = '5850db4c8479d6880a7b386f'
-         var eduData = req.body;
-// --------------------------------------------------
-
-  var arr=[], keyArr=[], edu=[];
-  var len=0;
-var data ={};
-      for(var key in req.body) {
-        // console.log(i++);
-        // console.log(' name=' + key + ' value=' + req.body[key]);
-    var leng=parseInt(req.body.length);
-      // console.log(key);
-          for(var i=0;i<leng;i++){
-                  if(key.startsWith('edu')){
-                        if(key.startsWith('edu'+i)){
-                            data = { [key]:req.body[key], [key]:req.body[key], [key]:req.body[key], [key]:req.body[key] };
-                            console.log("Data:", data)
-                        }
-            // edu.push(data);
-                  // keyArr.push(key);
-                 //  len++;
-                 //  item = req.body[key];
-                 //  arr.push(item);
-                  // console.log("Key:", item)
-                  // arr.push(item.toLowerCase());
-            }
-          }
-
-    }
-    // console.log("Edu Data:", edu);
-    // console.log("Key Name:", keyArr);
-    // console.log("Value : ",edu);
-    // console.log("length:",leng);
-    res.send(edu);
-
-    }
-
-
-//=========================================================
-//====================== End of edutest code ============
-//=========================================================
-
-
-//=========================================================
-//====================== CompanyProfile Record ============
-//=========================================================
-
+//  ==== City record
 
 {
-    "_id" : ObjectId("5853cd0a68c67ec026a78458"),
-    "companyName" : "JI",
-    "companyAlias" : "sarasbyte solution pvt ltd",
-    "headOffice" : "Ranchi",
-    "type" : "startup",
-    "hired" : 4,
-    "dateOfIncorporation" : "11 jan 2011",
-    "rating" : 4,
-    "slogan" : "Company who gives opportunity",
-    "perks" : [ 
+    "_id" : ObjectId("5919e9f47b98086819458302"),
+    "city" : "Ranchi",
+    "Carnival: JD High Street Mall" : [ 
+        "Carnival: JD High Street Mall"
+    ],
+    "Eylex Cinemas: Hinoo" : [ 
+        "Eylex Cinemas: Hinoo"
+    ],
+    "Plaza Cinema" : [ 
+        "Plaza Cinema"
+    ],
+    "Popkorn Cinemas: Galaxia Mall" : [ 
+        "Popkorn Cinemas: Galaxia Mall"
+    ],
+    "PVR: Nucleus Mall" : [ 
+        "PVR: Nucleus Mall"
+    ],
+    "Sujata Picture Palace" : [ 
+        "Sujata Picture Palace"
+    ],
+    "SRS Cinemas" : [ 
+        "SRS Cinemas", 
         {
-            "pantry" : "breakfast, lunch, coffee",
-            "uniform" : "casual",
-            "certificate" : "yes",
-            "companyActivity" : "gaming challenge",
-            "workDays" : "6",
-            "workPlace" : "open",
-            "organisationStructure" : "startup",
-            "workingHours" : "10:00 AM - 6:00 PM"
+            "time" : "09:30 AM",
+            "screen" : "screen 1",
+            "movieName" : "Baahubali 2: The Conclusion",
+            "price" : [ 
+                50, 
+                110, 
+                140
+            ]
         }, 
         {
-            "pantry" : "breakfast, lunch, coffee",
-            "uniform" : "casual",
-            "certificate" : "yes",
-            "companyActivity" : "gaming challenge",
-            "workDays" : "6",
-            "workPlace" : "open",
-            "organisationStructure" : "startup",
-            "workingHours" : "10:00 AM - 6:00 PM"
+            "time" : "10:00 AM",
+            "screen" : "screen 2",
+            "movieName" : "Guardians of the Galaxy Vol. 2",
+            "price" : [ 
+                50, 
+                120, 
+                160
+            ]
+        }, 
+        {
+            "time" : "10:30 AM",
+            "screen" : "screen 3",
+            "movieName" : "Meri Pyaari Bindu",
+            "price" : [ 
+                50, 
+                110, 
+                140
+            ]
+        }, 
+        {
+            "time" : "01:30 AM",
+            "screen" : "screen 1",
+            "movieName" : "Baahubali 2: The Conclusion",
+            "price" : [ 
+                90, 
+                140, 
+                190
+            ]
+        }, 
+        {
+            "time" : "01:40 PM",
+            "screen" : "screen 2",
+            "movieName" : "Guardians of the Galaxy Vol. 2",
+            "price" : [ 
+                90, 
+                150, 
+                210
+            ]
+        }, 
+        {
+            "time" : "02:00 PM",
+            "screen" : "screen 3",
+            "movieName" : "Meri Pyaari Bindu",
+            "price" : [ 
+                90, 
+                120, 
+                170
+            ]
+        }, 
+        {
+            "time" : "04:00 PM",
+            "screen" : "screen 2",
+            "movieName" : "Guardians of the Galaxy Vol. 2",
+            "price" : [ 
+                90, 
+                150, 
+                210
+            ]
+        }, 
+        {
+            "time" : "05:00 PM",
+            "screen" : "screen 1",
+            "movieName" : "Baahubali 2: The Conclusion",
+            "price" : [ 
+                90, 
+                140, 
+                190
+            ]
+        }, 
+        {
+            "time" : "05:30 PM",
+            "screen" : "screen 3",
+            "movieName" : "Meri Pyaari Bindu",
+            "price" : [ 
+                90, 
+                120, 
+                170
+            ]
+        }, 
+        {
+            "time" : "07:00 PM",
+            "screen" : "screen 2",
+            "movieName" : "Guardians of the Galaxy Vol. 2",
+            "price" : [ 
+                90, 
+                150, 
+                210
+            ]
+        }, 
+        {
+            "time" : "08:30 PM",
+            "screen" : "screen 3",
+            "movieName" : "Meri Pyaari Bindu",
+            "price" : [ 
+                70, 
+                110, 
+                150
+            ]
+        }, 
+        {
+            "time" : "08:50 PM",
+            "screen" : "screen 1",
+            "movieName" : "Baahubali 2: The Conclusion",
+            "price" : [ 
+                90, 
+                140, 
+                190
+            ]
         }
     ],
-    "review" : {
-        "reviewerId" : "reviewerId12345",
-        "reviewerName" : "Sam",
-        "reviewerText" : "A good place to utilize talent",
-        "reviewDate" : "16 Dec 2016",
-        "reviewerDuration" : "Jan - July 2016"
-    },
-    "likes" : [ 
-        "userId11223344"
-    ],
-    "amountSpent" : 120000,
-    "verified" : true,
-    "createdAt" : ISODate("2016-12-16T11:16:26.399Z"),
-    "updatedAt" : ISODate("2016-12-16T11:16:26.399Z")
+    "createdAt" : ISODate("2017-05-15T17:48:36.285Z"),
+    "updatedAt" : ISODate("2017-05-15T17:48:36.285Z")
 }
-
-
-//=========================================================
-//====================== End of CompanyProfile Record ============
-//=========================================================

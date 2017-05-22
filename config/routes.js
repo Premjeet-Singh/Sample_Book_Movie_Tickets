@@ -52,8 +52,8 @@ module.exports.routes = {
 
 
 //===========  routes for City Controller  ===================================
-  'GET /hallincity': { view: 'uploader/hallInCity' },
-  'POST /hallincity': {controller: "city", action: "hallInCity"},
+  'GET /cinemainhall': { view: 'uploader/cinemaInHall' },
+  'POST /cinemainhall': {controller: "city", action: "cinemaInHall"},
 
 'GET /srs': { view: 'uploader/srs' },
 'POST /srs': {controller: "city", action: "addInSrs"},

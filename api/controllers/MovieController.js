@@ -92,14 +92,23 @@ movieParticular: function(req, res){
 // === Function to get Book Movie Page of particular movie
 getBookMovie: function(req, res){
 	var name = req.param('name');
+	var city = "Ranchi";
+	var arr=[], json={};
 	Movie.findOne({name: name}, function(err, obj){
 		if(!obj){
 			res.send("Movie not found");
 		} else {
 			var str= obj.name.split(" ")[0]; 
 			console.log("str: ", str)
+City.findOne({city:city},function(err, mvObj){
+	if(!mvObj){
+		res.send("movie not found in this city");
+	} else {
+		res.send(mvObj)
+	}
+})
 			// res.send(obj)
-			res.view("page/book",{data: obj, name: str})
+			// res.view("page/book",{data: obj, name: str})
 		}
 	})
 },
