@@ -100,13 +100,41 @@ getBookMovie: function(req, res){
 		} else {
 			var str= obj.name.split(" ")[0]; 
 			console.log("str: ", str)
-City.findOne({city:city},function(err, mvObj){
-	if(!mvObj){
-		res.send("movie not found in this city");
-	} else {
-		res.send(mvObj)
-	}
-})
+// City.findOne({city:city},function(err, mvObj){
+// 	if(!mvObj){
+// 		res.send("movie not found in this city");
+// 	} else {
+// 		res.send(mvObj)
+// 	}
+// })
+// db.test.find(
+//     {"shapes.color": "red"}, 
+//     {_id: 0, shapes: {$elemMatch: {color: "red"}}});
+// db.test.find({"shapes.color": "red"}, {_id: 0, 'shapes.$': 1});
+// update City collection with Movie Data
+// db.xx.aggregate([
+// ...      // find the relevant documents in the collection
+// ...      // uses index, if defined on documents.x
+// ...      { $match: { documents: { $elemMatch: { "x": 1 } } } }, 
+// ...      // flatten array documennts
+// ...      { $unwind : "$documents" },
+// ...      // match for elements, "documents" is no longer an array
+// ...      { $match: { "documents.x" : 1 } },
+// ...      // re-create documents array
+// ...      { $group : { _id : "$_id", documents : { $addToSet : "$documents" } }}
+// ... ]);
+// db.articles.find( { tags: { $all: [ [ "ssl", "security" ] ] } } )
+// db.bios.find({awards: {$elemMatch: {award: "Turing Award",year: { $gt: 1980 }}}})
+City.native(function (err, Collection){
+	// Collection.find({city: city, 'movie.movieName': name},{ movie: {$elemMatch: {movieName: name}}}).toArray(function (err, updated){
+	Collection.find({ movie: {$elemMatch: {movieName: name}}},{'movie.$.movieName':1}).toArray(function (err, updated){
+	// Collection.find({city: city, 'movie.movieName': name},{'movie.$':1}).forEach(function (updated){
+	// Collection.aggregate({ movie: { $all: name } }).toArray(function (err, updated){
+		console.log(updated)
+		console.log(err)
+		res.send(updated)
+	});  //  $push update closing
+});  // native method closing	
 			// res.send(obj)
 			// res.view("page/book",{data: obj, name: str})
 		}
