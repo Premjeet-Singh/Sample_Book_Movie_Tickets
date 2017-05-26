@@ -10,65 +10,34 @@
 </div><br>
 
 <div class='row date-row'>
+<% for(var i=0; i < arr.length; i++) { %>
 	<button class="btn btn-success pull-left date">
-		<div>15<br>
-	        <span>APR</span>
+		<div><%= date[i].date %><br>
+	        <span><%= date[i].day %></span>
 	    </div>
 	</button>	
-	<button class="btn btn-success pull-left date">
-		<div>16<br>
-	        <span>APR</span>
-	    </div>
-	</button>
-	<button class="btn btn-success pull-left date">
-		<div>17<br>
-	        <span>APR</span>
-	    </div>
-	</button>
-	<button class="btn btn-success pull-left date">
-		<div>18<br>
-	        <span>APR</span>
-	    </div>
-	</button>
+<% } %>
 </div><br>
+<% for(var i=0; i < arr.length; i++) { %>
+
 
 <div class='wrap venue-time'>
 	<br>
 	<div class="row inner">
 	    <div class="col-xs-3 venue">
-	    	<span class='glyphicon glyphicon-film'></span>SRS Cinema
+	    	<span class='glyphicon glyphicon-film'></span><%= arr[i].hall %>
 	    </div>
 	    <div class="col-xs-8 choose-time">
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
+<% for(var j=0; j < arr[i].movie.length; j++) { %>
+			<button class="btn btn-info pull-left time"> <%= arr[i].movie[j].time %> </button>	    
+<% } %>    
 	    </div>
-	</div><hr>
-	<div class="row inner">
-	    <div class="col-xs-3 venue">
-	    	<span class='glyphicon glyphicon-film'></span>SRS Cinema
-	    </div>
-	    <div class="col-xs-8 choose-time">
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
-			<button class="btn btn-info pull-left time">09:00 AM</button>    
-	    </div>
-	</div><hr>
-	<div class="row inner">
-	    <div class="col-xs-3 venue">
-	    	<span class='glyphicon glyphicon-film'></span>SRS Cinema
-	    </div>
-	    <div class="col-xs-8 choose-time">
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
-			<button class="btn btn-info pull-left time">09:00 AM</button>	    
-	    </div>
-	</div><br>		    
+	</div><hr>	    
 </div>
 <% } %>
+<% } %>
 
-<%= JSON.stringify(data) %>
+
 
 
 

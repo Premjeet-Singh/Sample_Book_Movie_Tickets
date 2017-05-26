@@ -100,43 +100,29 @@ getBookMovie: function(req, res){
 		} else {
 			var str= obj.name.split(" ")[0]; 
 			console.log("str: ", str)
-// City.findOne({city:city},function(err, mvObj){
-// 	if(!mvObj){
-// 		res.send("movie not found in this city");
-// 	} else {
-// 		res.send(mvObj)
-// 	}
-// })
-// db.test.find(
-//     {"shapes.color": "red"}, 
-//     {_id: 0, shapes: {$elemMatch: {color: "red"}}});
-// db.test.find({"shapes.color": "red"}, {_id: 0, 'shapes.$': 1});
-// update City collection with Movie Data
-// db.xx.aggregate([
-// ...      // find the relevant documents in the collection
-// ...      // uses index, if defined on documents.x
-// ...      { $match: { documents: { $elemMatch: { "x": 1 } } } }, 
-// ...      // flatten array documennts
-// ...      { $unwind : "$documents" },
-// ...      // match for elements, "documents" is no longer an array
-// ...      { $match: { "documents.x" : 1 } },
-// ...      // re-create documents array
-// ...      { $group : { _id : "$_id", documents : { $addToSet : "$documents" } }}
-// ... ]);
-// db.articles.find( { tags: { $all: [ [ "ssl", "security" ] ] } } )
-// db.bios.find({awards: {$elemMatch: {award: "Turing Award",year: { $gt: 1980 }}}})
-City.native(function (err, Collection){
-	// Collection.find({city: city, 'movie.movieName': name},{ movie: {$elemMatch: {movieName: name}}}).toArray(function (err, updated){
-	Collection.find({ movie: {$elemMatch: {movieName: name}}},{'movie.$.movieName':1}).toArray(function (err, updated){
-	// Collection.find({city: city, 'movie.movieName': name},{'movie.$':1}).forEach(function (updated){
-	// Collection.aggregate({ movie: { $all: name } }).toArray(function (err, updated){
-		console.log(updated)
-		console.log(err)
-		res.send(updated)
-	});  //  $push update closing
-});  // native method closing	
+City.find({city:city},function(err, mvObj){
+	if(!mvObj){
+		res.send("movie not found in this city");
+	} else {
+// // var found = arr.filter(function(item) { return item.name === 'k1'; });
+for(var i=0;i<mvObj.length;i++){
+json.city = mvObj[i].city;
+json.hall = mvObj[i].hall;
+json.movie = mvObj[i].movie.filter(function(item) { return item.movieName === name; });
+arr.push(json);
+json={};
+}		
+var date = dateAndMonth();
+console.log(date);
+// var found = mvObj[0].movie.filter(function(item) { return item.movieName === name; });
+// console.log("found: ", found)
+		// res.send(arr)
+			res.view("page/book",{data: obj, name: str, arr: arr, date: date})
+
+	}
+})
 			// res.send(obj)
-			// res.view("page/book",{data: obj, name: str})
+			// res.view("page/book",{data: obj, name: str, arr: arr})
 		}
 	})
 },
@@ -146,3 +132,25 @@ City.native(function (err, Collection){
 
               // var result = skill.replace (/[, ]+/g, " ").trim();
               // var str=result.split(" ");
+
+var monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+  "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+var dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+function dateAndMonth(){
+  var arr=[],json={};	
+  var t = new Date();
+  var d = t.getDate();
+  var m = t.getMonth();
+  var y = t.getFullYear();
+  for(var i=0;i<4;i++){
+var nd = new Date(y,m,d);
+json.date =nd.getDate()+' '+monthNames[nd.getMonth()];
+json.day = dayNames[nd.getDay()]; 
+arr.push(json);
+json={}
+d++;
+  }
+  return arr;
+}
+
