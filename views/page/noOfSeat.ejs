@@ -1,0 +1,91 @@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div>
+        <div class="head">
+            <p>HOW MANY TICKETS?</p>
+        </div>
+    <div class="container">
+
+        <div class='seats'>
+            <a href="#" class='btn' id='1' onmouseover="imageChange(this)">1</a>
+            <a href="#" class='btn' id='2' onmouseover="imageChange(this)">2</a>
+            <a href="#" class='btn' id='3' onmouseover="imageChange(this)">3</a>
+            <a href="#" class='btn' id='4' onmouseover="imageChange(this)">4</a>
+            <a href="#" class='btn' id='5' onmouseover="imageChange(this)">5</a>
+            <a href="#" class='btn' id='6' onmouseover="imageChange(this)">6</a>
+            <a href="#" class='btn' id='6' onmouseover="imageChange(this)">7</a>
+            <a href="#" class='btn' id='8' onmouseover="imageChange(this)">8</a>
+            <a href="#" class='btn' id='8' onmouseover="imageChange(this)">9</a>
+            <a href="#" class='btn' id='8' onmouseover="imageChange(this)">10</a>
+        </div>
+
+        <div class='img'>
+            
+        </div>
+    </div>
+</div>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+<script>
+    function imageChange(x){
+// alert("Hello: "+ x.id);
+document.querySelector('.img').style.background = 'url(images/' + x.id + '.png) no-repeat center';
+    }
+</script>
+
+<style>
+.img{
+    width: 200px;
+    height: 150px;
+/*     background: red; */
+    /*background-image: url('img/11.png');*/
+    background: url('images/1.png') no-repeat center; 
+        /*background-size: auto;*/
+    /*background-repeat: no-repeat;*/
+    margin: 40px auto;
+    /*border: 1px solid black;*/
+}
+.container{
+    background: #ebebe0;
+    width: 700px;
+    height: 370px;
+    margin: 0px auto;
+}
+.head{
+    margin: 30px auto 0px;;
+    background:#003333;
+    width: 700px;
+    height: 75px;
+}
+p{
+    text-align: center;
+    font-size: 26px;
+    color:#33ffcc;
+    line-height: 2.78;
+    font-weight: bold;
+}
+.seats{
+    background: white;
+    margin: 22px auto;
+    height: 60px;
+    width: 600px;
+    padding: 0px 11px;
+    border: 1px solid #ccccb3;
+}
+.btn{
+    font-size: 22px;
+    text-align: center;
+    margin: 7px auto;
+/*     padding-left: 27px; */
+/*     background: red; */
+    width: 54px;
+    color: gray;
+}
+.btn:hover{
+    border-bottom: 4px solid  #00cc66;
+}
+
+</style>

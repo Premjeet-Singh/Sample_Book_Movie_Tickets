@@ -9,10 +9,11 @@
 	</div>
 </div><br>
 
+
 <div class='row date-row'>
-<% for(var i=0; i < arr.length; i++) { %>
+<% for(var i=0; i < date.length; i++) { %>
 	<button class="btn btn-success pull-left date">
-		<div><%= date[i].date %><br>
+		<div onclick='pickDate(this)'><%= date[i].date %><br>
 	        <span><%= date[i].day %></span>
 	    </div>
 	</button>	
@@ -29,15 +30,33 @@
 	    </div>
 	    <div class="col-xs-8 choose-time">
 <% for(var j=0; j < arr[i].movie.length; j++) { %>
-			<button class="btn btn-info pull-left time"> <%= arr[i].movie[j].time %> </button>	    
+			<button class="btn btn-info pull-left time" onclick='pickTime(this)'> <%= arr[i].movie[j].time %>
+            </button>	    
 <% } %>    
 	    </div>
 	</div><hr>	    
 </div>
 <% } %>
 <% } %>
+<input type="hidden" value=''>
+<input type="hidden" value=''>
+<input type="hidden" value=''>
+<input type="hidden" value=''>
+<script>
+    var date='<%= date[0].date %>',movieName='',hall='',time='';
+    function pickDate(x){
+        date = x.innerText;
+        
+        console.log("date: ", date, movieName);
+    }
+    function pickTime(x){
+        time = x.innerText;
+        hall = x.parentElement.parentElement.children[0].innerText;
+        movieName = document.querySelector('.movieName').innerText;
 
-
+        console.log("Time: ", time, hall,date,movieName);
+    }
+</script>
 
 
 

@@ -106,11 +106,14 @@ City.find({city:city},function(err, mvObj){
 	} else {
 // // var found = arr.filter(function(item) { return item.name === 'k1'; });
 for(var i=0;i<mvObj.length;i++){
-json.city = mvObj[i].city;
-json.hall = mvObj[i].hall;
-json.movie = mvObj[i].movie.filter(function(item) { return item.movieName === name; });
-arr.push(json);
-json={};
+	var found = mvObj[i].movie.filter(function(item) { return item.movieName === name; });
+	if(found.length>0){
+		json.city = mvObj[i].city;
+		json.hall = mvObj[i].hall;
+		json.movie = mvObj[i].movie.filter(function(item) { return item.movieName === name; });
+		arr.push(json);
+		json={};
+	} 
 }		
 var date = dateAndMonth();
 console.log(date);
