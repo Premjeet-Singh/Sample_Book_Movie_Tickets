@@ -153,9 +153,16 @@ chooseSeat: function(req, res){
 		hall: req.body.hallH,
 		movieName: req.body.movieNameH,
 		num: parseInt(req.body.numH),
-	}	
-	console.log("Body Data:: ", query)
-	res.view('page/chooseSeat',{data: query});
+	}
+Movie.findOne({name: query.movieName}, function(err, obj){
+	if(!obj){
+		console.log("movie not found")
+	} else {
+		console.log("Body Data:: ", query)
+		res.view('page/chooseSeat',{data: query, obj: obj});		
+	}
+})	
+
 },  // chooseSeat action closing
 
 

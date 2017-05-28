@@ -30,8 +30,10 @@
 	    </div>
 	    <div class="col-xs-8 choose-time">
 <% for(var j=0; j < arr[i].movie.length; j++) { %>
+            <input type='text' value='<%= arr[i].movie[j].screen %>'>
 			<button class="btn btn-info pull-left time" onclick='pickTime(this)'> <%= arr[i].movie[j].time %>
-            </button>	    
+            </button>
+            <input type='text' value='<%= arr[i].movie[j].price %>'>
 <% } %>    
 	    </div>
 	</div><hr>	    
@@ -61,8 +63,10 @@ document.querySelector('.movieNameH').value = movieName;
 document.querySelector('.timeH').value = time;
 document.querySelector('.hallH').value = hall;
         console.log("Time: ", time, hall,date,movieName);
+        console.log("sibling: ", x.nextElementSibling.value)
+        console.log("sibling 1: ", x.previousElementSibling.value)
         console.log("Date: ", document.querySelector('.hallH').value);
-        document.querySelector('.formH').submit();
+        // document.querySelector('.formH').submit();
  // window.location = "http://localhost:3000/noofseat?date="+date+'&time='+time+'&hall='+hall+'&movieName='+movieName;
 
 // var settings = {
