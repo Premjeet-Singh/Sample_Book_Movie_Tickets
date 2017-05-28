@@ -38,10 +38,13 @@
 </div>
 <% } %>
 <% } %>
-<input type="hidden" value=''>
-<input type="hidden" value=''>
-<input type="hidden" value=''>
-<input type="hidden" value=''>
+<form class='formH' action="/noofseat" method='post'>
+    <input type="hidden" class='dateH' name='dateH'>
+    <input type="hidden" class='movieNameH' name='movieNameH'>
+    <input type="hidden" class='timeH' name='timeH'>
+    <input type="hidden" class='hallH' name='hallH'>
+</form>
+
 <script>
     var date='<%= date[0].date %>',movieName='',hall='',time='';
     function pickDate(x){
@@ -53,8 +56,35 @@
         time = x.innerText;
         hall = x.parentElement.parentElement.children[0].innerText;
         movieName = document.querySelector('.movieName').innerText;
-
+document.querySelector('.dateH').value = date;
+document.querySelector('.movieNameH').value = movieName;
+document.querySelector('.timeH').value = time;
+document.querySelector('.hallH').value = hall;
         console.log("Time: ", time, hall,date,movieName);
+        console.log("Date: ", document.querySelector('.hallH').value);
+        document.querySelector('.formH').submit();
+ // window.location = "http://localhost:3000/noofseat?date="+date+'&time='+time+'&hall='+hall+'&movieName='+movieName;
+
+// var settings = {
+//   "async": true,
+//   "crossDomain": true,
+//   "url": "http://localhost:3000/noofseat",
+//   "method": "GET",
+//   "data": {
+//     "date": date,
+//     "time": time,
+//     "hall": hall,
+//     "movieName": movieName
+//   }
+// }
+
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+//   // window.location = "http://localhost:3000/noofseat";
+//   // window.location = 'http://localhost:3000/noofseat?'+settings.data;
+// });
+
+
     }
 </script>
 

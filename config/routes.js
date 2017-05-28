@@ -36,7 +36,7 @@ module.exports.routes = {
   'GET /register': { view: 'register' },
 
   'GET /login': { view: 'login' },
-  'GET /noofseat': { view: 'page/noOfSeat' },
+  // 'GET /chooseseat': { view: 'page/chooseSeat' },
   // 'GET /movie': { view: 'page/movie' },
 
 
@@ -49,6 +49,8 @@ module.exports.routes = {
   'GET /movie': {controller: "movie", action: "movieList"},
   'GET /movie/:name': {controller: "movie", action: "movieParticular"},
   'GET /book/:name': {controller: "movie", action: "getBookMovie"},
+  'POST /noofseat': {controller: "movie", action: "noOfSeat"},
+  'POST /chooseseat': {controller: "movie", action: "chooseSeat"},
 
 
 
@@ -73,6 +75,7 @@ module.exports.routes = {
 
 //===========  routes for users Controller  ===================================
   'GET /test': {controller: "test", action: "test"},
+  'POST /test2': {controller: "test", action: "test2"},
   'POST /upload': {controller: "test", action: "upload"},
   'GET /img': { view: 'uploadImage' }, 
   /***************************************************************************

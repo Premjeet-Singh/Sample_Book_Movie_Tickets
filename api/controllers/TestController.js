@@ -11,7 +11,17 @@ var mkdirp = require('mkdirp');
 module.exports = {
 // ======================================================
 test: function(req, res){
-	res.send("This is test route");
+  // console.log("BODY:",req.body);
+  console.log("QUERY:",req.query);
+	// res.send("This is test route");
+  res.view('page/noOfSeat')
+},
+
+test2: function(req, res){
+  console.log("BODY:",req.body);
+  // console.log("QUERY:",req.query);
+  // res.send("This is test route");
+  res.send('page/noOfSeat');
 },
 
 // upload: function(req, res){

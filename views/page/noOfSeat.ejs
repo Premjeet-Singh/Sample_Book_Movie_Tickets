@@ -6,16 +6,16 @@
     <div class="container">
 
         <div class='seats'>
-            <a href="#" class='btn' id='1' onmouseover="imageChange(this)">1</a>
-            <a href="#" class='btn' id='2' onmouseover="imageChange(this)">2</a>
-            <a href="#" class='btn' id='3' onmouseover="imageChange(this)">3</a>
-            <a href="#" class='btn' id='4' onmouseover="imageChange(this)">4</a>
-            <a href="#" class='btn' id='5' onmouseover="imageChange(this)">5</a>
-            <a href="#" class='btn' id='6' onmouseover="imageChange(this)">6</a>
-            <a href="#" class='btn' id='6' onmouseover="imageChange(this)">7</a>
-            <a href="#" class='btn' id='8' onmouseover="imageChange(this)">8</a>
-            <a href="#" class='btn' id='8' onmouseover="imageChange(this)">9</a>
-            <a href="#" class='btn' id='8' onmouseover="imageChange(this)">10</a>
+            <a href="#" class='btn' name='1' id='1' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">1</a>
+            <a href="#" class='btn' name='2' id='2' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">2</a>
+            <a href="#" class='btn' name='3' id='3' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">3</a>
+            <a href="#" class='btn' name='4' id='4' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">4</a>
+            <a href="#" class='btn' name='5' id='5' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">5</a>
+            <a href="#" class='btn' name='6' id='6' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">6</a>
+            <a href="#" class='btn' name='7' id='6' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">7</a>
+            <a href="#" class='btn' name='8' id='8' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">8</a>
+            <a href="#" class='btn' name='9' id='8' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">9</a>
+            <a href="#" class='btn' name='10' id='8' onclick='pickNoOfSeat(this)' onmouseover="imageChange(this)">10</a>
         </div>
 
         <div class='img'>
@@ -23,16 +23,26 @@
         </div>
     </div>
 </div>
-    <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+<form class='formH' action="/chooseseat" method='post'>
+    <input type="text" name='dateH' value='<%= data.date %>'>
+    <input type="text" name='timeH' value='<%= data.time %>'>
+    <input type="text" name='hallH' value='<%= data.hall %>'>
+    <input type="text" name='movieNameH' value='<%= data.movieName %>'>
+    <input type="text" class='num' name='numH' value=''><br>
+</form>
+<%= JSON.stringify(data) %>
+ 
 
 <script>
     function imageChange(x){
 // alert("Hello: "+ x.id);
 document.querySelector('.img').style.background = 'url(images/' + x.id + '.png) no-repeat center';
+    }
+
+    function pickNoOfSeat(x){
+        console.log('seat: ', x.name);
+     document.querySelector('.num').value = x.name;   
+     document.querySelector('.formH').submit();
     }
 </script>
 

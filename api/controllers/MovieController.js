@@ -116,7 +116,7 @@ for(var i=0;i<mvObj.length;i++){
 	} 
 }		
 var date = dateAndMonth();
-console.log(date);
+// console.log(date);
 // var found = mvObj[0].movie.filter(function(item) { return item.movieName === name; });
 // console.log("found: ", found)
 		// res.send(arr)
@@ -130,8 +130,40 @@ console.log(date);
 	})
 },
 
+// =================================================================
+// === FUNCTION TO CHOOSE NO. OF SEATS TO BOOK ========
+noOfSeat: function(req, res){
+	var query = {
+		date: req.body.dateH,
+		time: req.body.timeH,
+		hall: req.body.hallH,
+		movieName: req.body.movieNameH,
+	}
+// console.log("Inside action: ", query)
+	res.view('page/noOfSeat',{data: query});
+},  // noOfseat action closing
 
-};
+
+// =================================================================
+// === Function to choose seat from cinamahall to book tickets
+chooseSeat: function(req, res){
+	var query = {
+		date: req.body.dateH,
+		time: req.body.timeH,
+		hall: req.body.hallH,
+		movieName: req.body.movieNameH,
+		num: parseInt(req.body.numH),
+	}	
+	console.log("Body Data:: ", query)
+	res.view('page/chooseSeat',{data: query});
+},  // chooseSeat action closing
+
+
+};  // MODULE EXPORTS CLOSING ******************
+// *********************************************
+
+
+
 
               // var result = skill.replace (/[, ]+/g, " ").trim();
               // var str=result.split(" ");
