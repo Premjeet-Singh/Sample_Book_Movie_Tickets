@@ -138,6 +138,8 @@ noOfSeat: function(req, res){
 		time: req.body.timeH,
 		hall: req.body.hallH,
 		movieName: req.body.movieNameH,
+		screen: req.body.screenH,
+		price: req.body.priceH,
 	}
 // console.log("Inside action: ", query)
 	res.view('page/noOfSeat',{data: query});
@@ -147,11 +149,18 @@ noOfSeat: function(req, res){
 // =================================================================
 // === Function to choose seat from cinamahall to book tickets
 chooseSeat: function(req, res){
+	var price = req.body.priceH;
+	    price = price.replace(/^[,\s]+|[,\s]+$/g, '');
+	    price = price.replace(/\s*,\s*/g, ',');
+	 	price = price.split(',').map(Number);
+var city = 'Ranchi';
 	var query = {
 		date: req.body.dateH,
 		time: req.body.timeH,
 		hall: req.body.hallH,
 		movieName: req.body.movieNameH,
+		screen: req.body.screenH,
+		price: price,
 		num: parseInt(req.body.numH),
 	}
 Movie.findOne({name: query.movieName}, function(err, obj){
@@ -159,12 +168,128 @@ Movie.findOne({name: query.movieName}, function(err, obj){
 		console.log("movie not found")
 	} else {
 		console.log("Body Data:: ", query)
-		res.view('page/chooseSeat',{data: query, obj: obj});		
+// City.findOne({city:city, hall: query.hall}, function(err, cityObj){
+// 	if(!cityObj){
+// 		console.log("city and hall not found");
+// 	} else {
+// 		console.log("City obj: ", cityObj)
+// 	}
+// })
+City.native(function (err, Collection){
+	Collection.findOne({'city':city,'hall':query.hall}, 
+	{movie: {$elemMatch: {time: query.time,movieName:query.movieName,screen:query.screen}}},function(err, cityObj){
+		if(!cityObj){
+			console.log("city and hall not found");
+		} else {
+			console.log("City obj: ", cityObj)
+// mvObj[i].movie.filter(function(item) { return item.movieName === name; });
+// var qd = query.date.toString();
+			var reserve = cityObj.movie[0].reserve.filter(function(item) { return item.date === query.date; });
+
+			res.view('page/chooseSeat',{data: query, obj: obj, reserve: reserve[0].seat});
+		}		
+	});
+});
+		// res.view('page/chooseSeat',{data: query, obj: obj, reserve: reserve});		
 	}
 })	
 
 },  // chooseSeat action closing
 
+
+// =================================================================
+// === FUNCTION TO CREATE AMOUNT SUMMARY TO PAY ========
+amountToPay: function(req, res){
+	var arr = req.body.seatNoH.split(',');
+	var seatNo =[];
+	for(var i = 0;i<parseInt(req.body.numH);i++){
+		seatNo.push(arr[i]);		
+	}
+var ticketAmount = parseInt(req.body.totalH);
+var fees = (12.5/100)*ticketAmount;
+var subTotal = ticketAmount + fees;
+	var query = {
+		date: req.body.dateH,
+		time: req.body.timeH,
+		hall: req.body.hallH,
+		movieName: req.body.movieNameH,
+		screen: req.body.screenH,
+		language: req.body.languageH,
+		dimension: req.body.dimensionH,
+		total: req.body.totalH,
+		num: req.body.numH,
+		seatNo:seatNo,
+		fees: fees,
+		subTotal: subTotal
+	}
+console.log("Inside action: ", query)
+	res.view('page/amountToPay',{data: query});
+
+},  // noOfseat action closing
+
+
+
+// ==========================================================
+// === Function to reserve seat and update in database ==
+reserveSeat: function(req, res){
+	var city = 'Ranchi';
+	var arr = req.body.seatNoH.split(',');
+	var seatNo =[];
+	for(var i = 0;i<parseInt(req.body.numH);i++){
+		seatNo.push(arr[i]);		
+	}
+	var query = {
+		city: city,
+		date: req.body.dateH,
+		time: req.body.timeH,
+		hall: req.body.hallH,
+		movieName: req.body.movieNameH,
+		screen: req.body.screenH,
+		// language: req.body.languageH,
+		// dimension: req.body.dimensionH,
+		// total: req.body.totalH,
+		// num: req.body.numH,
+		seatNo:seatNo,
+		// fees: fees,
+		// subTotal: subTotal
+	}
+var index=0, resIndex=0;
+City.findOne({city:city, hall: query.hall}, function(err, obj){
+	if(!obj){
+		console.log('city and hall not found')
+	} else {
+		console.log(obj);
+for(var i=0;i<obj.movie.length;i++){
+if(obj.movie[i].time==query.time && obj.movie[i].screen==query.screen){
+index=i;
+console.log(i,' and ',index);
+	for(var j=0;j<obj.movie[i].reserve.length;j++) {
+		if(obj.movie[i].reserve[j].date==query.date){
+			resIndex = j;
+		}
+	}
+}
+}
+var matchField = 'movie.'+index+'.reserve.'+resIndex+'.seat';
+for(var i=0;i<seatNo.length;i++){
+
+
+City.native(function (err, Collection){
+	Collection.update({'city':city,'hall':query.hall},
+	{$push:{[matchField]:seatNo[i]}},function(err, cityObj){
+		if(!cityObj){
+			console.log("city and hall not found");
+		} else {
+			// console.log("City obj: ", cityObj)
+		}
+	});
+});
+}
+// ===
+	}
+})
+	res.send(query)
+},
 
 };  // MODULE EXPORTS CLOSING ******************
 // *********************************************

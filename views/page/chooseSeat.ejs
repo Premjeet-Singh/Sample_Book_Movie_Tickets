@@ -1,7 +1,8 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 
+<%= JSON.stringify(data) %>
 <div class='content'>
-  <button class='pay pull-right'>PAY NOW</button>
+  <button class='pay pull-right' onclick='submitToPay()'>PAY NOW</button>
   <div class='amount pay pull-right'><p>&#x20b9; <span class='total'>0.00</span></p></div>
 </div>
 <div class='movieDetail'>
@@ -12,200 +13,154 @@
 <div class="container">
 
 <div class='row seats'>
-  <p>Club-RS. 120</p>
-  <span>A -</span> 
-  <button class='btn' id='120' name='A1' onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='120' name='A2' onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='120' name='A3' onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='120' name='A4' onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='120' name='A5' onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='120' name='A6' onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='120' name='A7' onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='120' name='A8' onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='120' name='A9' onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='120' name='A10' onclick='calculateAmount(this);' value='10'>10</button>
+  <p>Club-RS. <%= data.price[2]%></p>
+  <span>A -</span>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[2]%>' name='A<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %>  
+
 </div>          
 <div class='row seats'>
-  <span>B -</span> 
-  <button class='btn' id='120' name='B1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='120' name='B2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='120' name='B3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='120' name='B4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='120' name='B5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='120' name='B6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='120' name='B7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='120' name='B8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='120' name='B9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='120' name='B10' onclick='calculateAmount(this);' value='10'>10</button>
+  <span>B -</span>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[2]%>' name='B<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %> 
+
 </div>
 <div class='row seats'>
-  <span>C -</span> 
-  <button class='btn' id='120' name='C1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='120' name='C2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='120' name='C3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='120' name='C4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='120' name='C5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='120' name='C6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='120' name='C7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='120' name='C8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='120' name='C9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='120' name='C10' onclick='calculateAmount(this);' value='10'>10</button>
+  <span>C -</span>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[2]%>' name='C<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %> 
 </div>
 <div class='row seats'>
-  <span>D -</span> 
-  <button class='btn' id='120' name='D1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='120' name='D2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='120' name='D3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='120' name='D4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='120' name='D5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='120' name='D6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='120' name='D7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='120' name='D8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='120' name='D9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='120' name='D10' onclick='calculateAmount(this);' value='10'>10</button>
+  <span>D -</span>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[2]%>' name='D<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %> 
 </div>
 <div class='row seats'>
   <span>E -</span> 
-  <button class='btn' id='120' name='E1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='120' name='E2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='120' name='E3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='120' name='E4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='120' name='E5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='120' name='E6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='120' name='E7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='120' name='E8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='120' name='E9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='120' name='E10' onclick='calculateAmount(this);' value='10'>10</button>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[2]%>' name='E<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %> 
 </div><br>
 <div class='row seats'>
-  <p>Premium-RS. 90</p>
+  <p>Premium-RS. <%= data.price[1]%></p>
   <span>F -</span> 
-  <button class='btn' id='90' name='F1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='90' name='F2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='90' name='F3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='90' name='F4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='90' name='F5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='90' name='F6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='90' name='F7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='90' name='F8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='90' name='F9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='90' name='F10' onclick='calculateAmount(this);' value='10'>10</button>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[1]%>' name='F<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %> 
 </div>
 <div class='row seats'>
   <span>G -</span> 
-  <button class='btn' id='90' name='G1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='90' name='G2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='90' name='G3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='90' name='G4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='90' name='G5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='90' name='G6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='90' name='G7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='90' name='G8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='90' name='G9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='90' name='G10' onclick='calculateAmount(this);' value='10'>10</button>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[1]%>' name='G<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %> 
 </div>
 <div class='row seats'>
-  <span>H -</span> 
-  <button class='btn' id='90' name='H1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='90' name='H2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='90' name='H3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='90' name='H4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='90' name='H5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='90' name='H6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='90' name='H7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='90' name='H8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='90' name='H9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='90' name='H10' onclick='calculateAmount(this);' value='10'>10</button>
+  <span>H -</span>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[1]%>' name='H<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %> 
 </div>
 <div class='row seats'>
   <span>&nbsp;I -</span> 
-  <button class='btn' id='90' name='I1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='90' name='I2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='90' name='I3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='90' name='I4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='90' name='I5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='90' name='I6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='90' name='I7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='90' name='I8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='90' name='I9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='90' name='I10' onclick='calculateAmount(this);' value='10'>10</button>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[1]%>' name='I<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %>
 </div>
 <div class='row seats'>
   <span>J -</span> 
-  <button class='btn' id='90' name='J1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='90' name='J2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='90' name='J3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='90' name='J4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='90' name='J5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='90' name='J6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='90' name='J7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='90' name='J8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='90' name='J9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='90' name='J10' onclick='calculateAmount(this);' value='10'>10</button>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[1]%>' name='J<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %>
 </div>
 <div class='row seats'>
   <span>K -</span> 
-  <button class='btn' id='90' name='K1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='90' name='K2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='90' name='K3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='90' name='K4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='90' name='K5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='90' name='K6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='90' name='K7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='90' name='K8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='90' name='K9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='90' name='K10' onclick='calculateAmount(this);' value='10'>10</button>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[1]%>' name='K<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %>
 </div><br>
 <div class='row seats'>
-  <p>Silver-RS. 50</p>
+  <p>Silver-RS. <%= data.price[0]%></p>
   <span>&nbsp;L -</span> 
-  <button class='btn' id='50' name='L1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='50' name='L2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='50' name='L3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='50' name='L4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='50' name='L5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='50' name='L6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='50' name='L7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='50' name='L8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='50' name='L9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='50' name='L10' onclick='calculateAmount(this);' value='10'>10</button>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[0]%>' name='L<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %>
 </div>
 <div class='row seats'>
   <span>M -</span> 
-  <button class='btn' id='50' name='M1'  onclick='calculateAmount(this);' value='1'>1</button>
-  <button class='btn' id='50' name='M2'  onclick='calculateAmount(this);' value='2'>2</button>
-  <button class='btn' id='50' name='M3'  onclick='calculateAmount(this);' value='3'>3</button>
-  <button class='btn' id='50' name='M4'  onclick='calculateAmount(this);' value='4'>4</button>
-  <button class='btn' id='50' name='M5'  onclick='calculateAmount(this);' value='5'>5</button>
-  <button class='btn' id='50' name='M6'  onclick='calculateAmount(this);' value='6'>6</button>
-  <button class='btn' id='50' name='M7'  onclick='calculateAmount(this);' value='7'>7</button>
-  <button class='btn' id='50' name='M8'  onclick='calculateAmount(this);' value='8'>8</button>
-  <button class='btn' id='50' name='M9'  onclick='calculateAmount(this);' value='9'>9</button>
-  <button class='btn' id='50' name='M10' onclick='calculateAmount(this);' value='10'>10</button>
+<% for(var i=1; i < 11; i++) { %>
+  <button class='btn' id='<%= data.price[0]%>' name='M<%=i%>' onclick='calculateAmount(this);' value='<%=i%>'><%=i%></button>
+<% } %>
 </div>
 
 <div class='row screen'>SCREEN (all eyes this way please) </div>
 </div>
 
-<%= JSON.stringify(data) %>
+<form class='formH' action="/amounttopay" method='post'>
+    <input type="text" name='dateH' value='<%= data.date %>'>
+    <input type="text" name='timeH' value='<%= data.time %>'>
+    <input type="text" name='hallH' value='<%= data.hall %>'>
+    <input type="text" name='movieNameH' value='<%= data.movieName %>'>
+    <input type="text" name='languageH' value='<%= obj.language %>'>
+    <input type="text" name='dimensionH' value='<%= obj.dimension %>'>
+    <input type="text" name='screenH' value='<%= data.screen %>'>
+    <input type="text" name='totalH' class='totalH'>
+    <input type="text" name='seatNoH' class='seatNoH'>
+    <input type="text" name='numH' value='<%= data.num %>'><br>
+</form>
 
+<% var lenRes = reserve.length %>
 
 <script>
-var total = 0, arr=[];
+var total = 0, arr=[], seatNo='';
+var seatArr = '<%-reserve%>'.split(',');
 var n = '<%= data.num %>', count=0;
+// document.querySelector('.btn').style.backgroundColor = 'red';
+
+
+var all = document.querySelectorAll('.btn');
+for(var i=0; i<all.length;i++){
+  if(seatArr.indexOf(all[i].name)!=-1){
+    all[i].style.background = 'gray';
+    all[i].style.color = 'white';
+  }
+}
+console.log(all,"length:",all.length)
+console.log(all[0],"length:",all[3])
+
  function calculateAmount(x){
-  if(count<n){
+  console.log("Name: ",x.name,x.className,x.id,x.value);
+  if(count<n && x.style.background!='gray'){
     count++;
     console.log(n," : ", count);
 
-  arr.push(parseInt(x.id));
-  var sum = arr.reduce(function(a, b){return a+b;})
-  document.querySelector('.total').innerHTML = parseInt(sum)+'.00';
-  x.style.backgroundColor = " #b32400";
-  x.style.color = "white";
-    }
+    arr.push(parseInt(x.id));
+    var sum = arr.reduce(function(a, b){return a+b;})
+    total = sum;
+    document.querySelector('.total').innerHTML = parseInt(sum)+'.00';
+    document.querySelector('.totalH').value = parseInt(sum);
+    x.style.backgroundColor = "#b32400";
+    x.style.color = "white";
+    seatNo+=x.name+',';
+    document.querySelector('.seatNoH').value = seatNo;
+     // document.querySelector('.formH').submit();
+  }
 
 
+ }
+
+ function submitToPay(){
+  console.log("...:",n,count,total);
+  if(count==n && total>0){
+    console.log("Hello pay:",n,count,total);
+    document.querySelector('.formH').submit();
+  } else {
+    alert("first select "+n+" seat to proceed");
+  }
+  
  }
 </script>
 

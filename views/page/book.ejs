@@ -41,10 +41,12 @@
 <% } %>
 <% } %>
 <form class='formH' action="/noofseat" method='post'>
-    <input type="hidden" class='dateH' name='dateH'>
-    <input type="hidden" class='movieNameH' name='movieNameH'>
-    <input type="hidden" class='timeH' name='timeH'>
-    <input type="hidden" class='hallH' name='hallH'>
+    <input type="text" class='dateH' name='dateH'>
+    <input type="text" class='movieNameH' name='movieNameH'>
+    <input type="text" class='timeH' name='timeH'>
+    <input type="text" class='hallH' name='hallH'>
+    <input type="text" class='screenH' name='screenH'>
+    <input type="text" class='priceH' name='priceH'>
 </form>
 
 <script>
@@ -62,11 +64,13 @@ document.querySelector('.dateH').value = date;
 document.querySelector('.movieNameH').value = movieName;
 document.querySelector('.timeH').value = time;
 document.querySelector('.hallH').value = hall;
-        console.log("Time: ", time, hall,date,movieName);
-        console.log("sibling: ", x.nextElementSibling.value)
-        console.log("sibling 1: ", x.previousElementSibling.value)
-        console.log("Date: ", document.querySelector('.hallH').value);
-        // document.querySelector('.formH').submit();
+document.querySelector('.screenH').value = x.previousElementSibling.value;
+document.querySelector('.priceH').value = x.nextElementSibling.value;
+        // console.log("Time: ", time, hall,date,movieName);
+        // console.log("sibling: ", x.nextElementSibling.value)
+        // console.log("sibling 1: ", x.previousElementSibling.value)
+        // console.log("Date: ", document.querySelector('.hallH').value);
+        document.querySelector('.formH').submit();
  // window.location = "http://localhost:3000/noofseat?date="+date+'&time='+time+'&hall='+hall+'&movieName='+movieName;
 
 // var settings = {

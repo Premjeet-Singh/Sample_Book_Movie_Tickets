@@ -2,20 +2,42 @@
 
 <div class='container'>
 	<div class='head'>
-		<div class='movie'>Baahubali 2:The Conclusion</div>
-		<div class='movieDetail'><span>28 May |</span><span> 10:55 PM | </span><span> Hindi | </span><span></span> 2D</div>
+		<div class='movie'><%= data.movieName %> </div>
+		<div class='movieDetail'><span><%= data.date %> |</span><span> <%= data.time %> | </span><span> <%= data.language %> | </span><span></span> <%= data.dimension %></div>
 	</div>
 	<div class='summary'>
 		<div class='title'> Booking Summary</div>
-		<div class='detail'>club-E1,E2,E3 [3 ticket(s)] | Screen 1 <span class='pull-right'>Rs. 420.00</span></div>
-		<div class='detail'>Internet Fees <span class='pull-right'>Rs. 51.00</span></div>
-		<div class='detail'>SUB TOTAL:  <span class='pull-right'>RS. 471.00</span></div>
+		<div class='detail'><%= data.screen %> - <%= data.seatNo %> [<%= data.num %> ticket(s)]<span class='pull-right'>Rs. <%= data.total %>.00</span></div>
+		<div class='detail'>Internet Fees <span class='pull-right'>Rs. <%= data.fees %>.00</span></div>
+		<div class='detail'>SUB TOTAL:  <span class='pull-right'>RS. <%= data.subTotal %>.00</span></div>
 	</div>
-	<div class='total'>TOTAL: RS. 471.00 <span class='pull-right proceed'>PROCEED</span></div>
+	<div class='total' onclick='proceed()'>TOTAL: RS. <%= data.subTotal %>.00 <span class='pull-right proceed'>PROCEED</span></div>
 
 </div>
 
+<form class='formH' action="/reserveseat" method='post'>
+    <input type="text" name='dateH' value='<%= data.date %>'>
+    <input type="text" name='timeH' value='<%= data.time %>'>
+    <input type="text" name='hallH' value='<%= data.hall %>'>
+    <input type="text" name='movieNameH' value='<%= data.movieName %>'>
+    <input type="text" name='languageH' value='<%= data.language %>'>
+    <input type="text" name='dimensionH' value='<%= data.dimension %>'>
+    <input type="text" name='screenH' value='<%= data.screen %>'>
+    <input type="text" name='totalH' value='<%= data.total %>'>
+    <input type="text" name='seatNoH' value='<%= data.seatNo %>'>
+    <input type="text" name='numH' value='<%= data.num %>'><br>
+    <input type="text" name='feesH' value='<%= data.fees %>'><br>
+    <input type="text" name='subTotalH' value='<%= data.subTotal %>'><br>
+</form>
 
+<%= JSON.stringify(data)%>
+
+<script>
+function proceed(){
+	console.log('proceed');
+	document.querySelector('.formH').submit();
+}
+</script>
 <style>
 .container{
 	background:#d6d6c2;
@@ -39,7 +61,7 @@
 }
 .title{
 	margin-top: 10px;
-	background:  #990000;
+	background:  #006666;
 	padding: 10px;
 	text-align: center;
 	font-size: 20px;
@@ -62,6 +84,7 @@
 	color: #ebebe0;
 	font-size: 16px;
 	font-weight: bolder;
+	cursor: pointer;
 }
 .total:hover{
 	background:#660000;
