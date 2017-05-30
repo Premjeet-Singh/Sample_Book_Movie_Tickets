@@ -232,13 +232,7 @@ console.log("Inside action: ", query)
 // ==========================================================
 // === Function to reserve seat and update in database ==
 reserveSeat: function(req, res){
-	if(req.isAuthenticated()){
-console.log('Authenticated: ', req.session.passport)
-
-	} else {
-		console.log('not Authenticated')
-		res.redirect('/login')
-	}
+	var owner = '58ea8204dc3d35dc16ce68e8';
 	var city = 'Ranchi';
 	var arr = req.body.seatNoH.split(',');
 	var seatNo =[];
@@ -252,13 +246,13 @@ console.log('Authenticated: ', req.session.passport)
 		hall: req.body.hallH,
 		movieName: req.body.movieNameH,
 		screen: req.body.screenH,
-		// language: req.body.languageH,
-		// dimension: req.body.dimensionH,
-		// total: req.body.totalH,
-		// num: req.body.numH,
+		language: req.body.languageH,
+		dimension: req.body.dimensionH,
+		total: parseInt(req.body.totalH),
+		num: parseInt(req.body.numH),
 		seatNo:seatNo,
-		// fees: fees,
-		// subTotal: subTotal
+		fees: parseInt(req.body.feesH),
+		subTotal: parseInt(req.body.subTotalH)
 	}
 var index=0, resIndex=0;
 City.findOne({city:city, hall: query.hall}, function(err, obj){
@@ -288,14 +282,18 @@ City.native(function (err, Collection){
 			console.log("city and hall not found");
 		} else {
 			// console.log("City obj: ", cityObj)
+			
 		}
 	});
 });
 }
+sendTicketToUser(owner, query);
 // ===
 	}
 })
-	res.send(query)
+	// res.send(query);
+	res.view('page/ticket',{data:query});
+
 },  // reserveSeat action closing
 
 
@@ -304,6 +302,20 @@ City.native(function (err, Collection){
 };  // MODULE EXPORTS CLOSING ******************
 // *********************************************
 
+function sendTicketToUser(owner, query){
+
+Users.findOne({id:owner}, function(err, user){
+	if(!user){
+		console.log("User not found");
+	} else {
+		Bought.create({owner: owner, movie: query}, function(err, obj){
+			query.email = user.local.email;
+			mailer.sendTicketMail(query);
+			console.log('Bought created');
+		})
+	}
+})
+}
 
 
 

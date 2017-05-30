@@ -4,11 +4,11 @@
 module.exports.email = {
 	 service: 'Gmail',
 	 auth: {
-		 user: 'prem@sarasbyte.com', 
-		 pass: 'hard2reach'
+		 user: 'kmrrakesh20@gmail.com', 
+		 pass: '22111993'
 	 },
 	 templateDir: 'api/emailTemplates',
-	 // from: 'itsprem2193@gmail.com',
+	 // from: 'abc@gmail.com',
 	 testMode: false,
 	 ssl: true
 }

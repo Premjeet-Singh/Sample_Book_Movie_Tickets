@@ -11,7 +11,8 @@ module.exports = {
   attributes: {
     local:                      { type: 'json' },
     resetPasswordToken:         { type: 'string' },
-  	resetPasswordExpires:       { type: 'date' }
+    resetPasswordExpires:       { type: 'date' },
+  	bought:                     { collection: 'bought', via: 'owner' },
   },   //  attributes closing
 
 

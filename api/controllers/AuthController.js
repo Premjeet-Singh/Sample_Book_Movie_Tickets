@@ -52,6 +52,44 @@ module.exports = {
         })(req, res);   // passport.authenticate closing
     },   // login function closing
 
+    loginFirst: function(req, res) {
+
+        passport.authenticate('local', function(err, user, info) {
+            if ((err) || (!user)) {
+                return res.send({
+                    message: info.message,
+                    user: user
+                });
+            }
+            req.logIn(user, function(err) {          // get user data from passport.js returnUser variable
+                if (err) res.send(err);
+                // return res.send({
+                //     message: info.message,
+                //     user: user
+                // });
+            // ================================================
+            // set required user's info to session
+            req.session.passport.fname = user.fname;
+            req.session.passport.lname = user.lname;
+            req.session.passport.username = user.username;
+            req.session.passport.type = user.type;
+            req.session.passport.email = user.email;
+            req.session.passport.phone = user.phone;
+
+            // ================================================
+            // set required user's info to cookie
+            res.cookie('user', user, { expires: new Date(Date.now() + 60000), httpOnly: true, signed: true });
+
+            // res.send(200,{data: req.session.passport});
+            // res.send(200,{data: user});
+            console.log('logged in successfully');
+            res.redirect(req.session.back);;
+
+            });  // req.logIn closing
+
+        })(req, res);   // passport.authenticate closing
+    },   // login function closing
+
 // ===Logout Function ======
 // GET  route /logout
     logout: function(req, res) {

@@ -46,3 +46,22 @@ module.exports.sendPasswordForgotMail = function(obj) {
 		 	function(err) {console.log(err || 'Mail Sent!');}
 	 )
 };
+
+module.exports.sendTicketMail = function(obj) {
+
+	 sails.hooks.email.send(
+		 'sendTicketMail', 
+		 {
+		 	// Name: obj.name,
+		 	data: obj
+		 	// Name: "Test Name"
+		 },
+		 {
+			 to: obj.email,
+			 // from: 'prem@gmail.com',
+			 // to: "itsprem2193@gmail.com",
+			 subject: 'Booked Movie Ticket'
+		 },
+		 	function(err) {console.log(err || 'Mail Sent!');}
+	 )
+};

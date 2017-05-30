@@ -36,6 +36,7 @@ module.exports.routes = {
   'GET /register': { view: 'register' },
 
   'GET /login': { view: 'login' },
+  'GET /loginfirst': { view: 'loginFirst' },
   'GET /amount': { view: 'page/amountToPay' },
   'GET /ticket': { view: 'page/ticket' },
   // 'GET /movie': { view: 'page/movie' },
@@ -69,6 +70,7 @@ module.exports.routes = {
   'POST /register': {controller: "users", action: "register"},
   // 'POST /login': {controller: "users", action: "login"},                   // works well using token
   'POST /login': {controller: "auth", action: "login"},              //  updated using passport
+  'POST /loginfirst': {controller: "auth", action: "loginFirst"},              //  updated using passport
   // 'GET /logout': {controller: "users", action: "logout"},                  // works well using token
   'GET /logout': {controller: "auth", action: "logout"},             //  updated using passport
 

@@ -1,3 +1,4 @@
+<%= JSON.stringify(data)%>
 <body>
 	<div class='container'>
 		<div class='head'>
@@ -5,15 +6,15 @@
 		</div>
 		<div class='circle'></div>
 		<div class='movieName'>
-			<div class='check'><p class='name'>Baahubali 2:The Conclusion</p></div>
-			<p class='date'>SUN OCT 02, 02:00 PM</p>
-			<p class='theater'>CARNIVAL: JD HI-STREET</p>
+			<div class='check'><p class='name'><%= data.movieName%></p></div>
+			<p class='date'><%= data.date%>, <%= data.time%></p>
+			<p class='theater'><%= data.hall%></p>
 			<!-- <div class='ticketCount pull-right'>ADMITS THREE</div> -->
 		</div>
 		<div class='movieSeats'>
 			<p class='seat'>SEATS</p>
-			<p class='seatNo'>SCREEN - G2,G3</p>
-			<p class='ticketType'>TICKET TYPE: <span class='glyphicon glyphicon-phone' > m-ticket</span></p>
+			<p class='seatNo'><%= data.screen %> - <%= data.seatNo%></p>
+			<p class='ticketType'>TICKET TYPE: <span class='glyphicon glyphicon-phone' > online-ticket</span></p>
 		</div>
 		<div class='barcode'>
 			<div class='barcodePic'></div>

@@ -12,9 +12,11 @@ module.exports = {
 // ======================================================
 test: function(req, res){
   // console.log("BODY:",req.body);
-  console.log("QUERY:",req.query);
-	// res.send("This is test route");
-  res.view('page/noOfSeat')
+  // console.log("QUERY:",req.query);
+  console.log('url:', req.url);
+  
+	res.send("This is test route");
+  // res.view('page/noOfSeat')
 },
 
 test2: function(req, res){
