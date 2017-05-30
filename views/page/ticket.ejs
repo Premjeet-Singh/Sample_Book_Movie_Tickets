@@ -1,1 +1,113 @@
-<h3>hello, this is ticket page</h3>
+<body>
+	<div class='container'>
+		<div class='head'>
+			<p class='heading'>TICKET DETAIL</p>
+		</div>
+		<div class='circle'></div>
+		<div class='movieName'>
+			<div class='check'><p class='name'>Baahubali 2:The Conclusion</p></div>
+			<p class='date'>SUN OCT 02, 02:00 PM</p>
+			<p class='theater'>CARNIVAL: JD HI-STREET</p>
+			<!-- <div class='ticketCount pull-right'>ADMITS THREE</div> -->
+		</div>
+		<div class='movieSeats'>
+			<p class='seat'>SEATS</p>
+			<p class='seatNo'>SCREEN - G2,G3</p>
+			<p class='ticketType'>TICKET TYPE: <span class='glyphicon glyphicon-phone' > m-ticket</span></p>
+		</div>
+		<div class='barcode'>
+			<div class='barcodePic'></div>
+		</div>
+	</div>
+</body>
+
+
+<style>
+
+	body{
+		background: white;
+		margin: 25px auto;
+	}
+.container{
+	background: #f5f5f0;
+	width: 500px;
+	height: 630px;
+	box-shadow: 0px 0px 25px #888888;
+/* 	margin: 10px auto; */
+}
+.head{
+	background: #cc0000;
+	width: 500px;
+	height: 60px;
+	margin-left: -15px;
+}
+.heading{
+	font-size: 22px;
+	color: white;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 2.6;
+}
+.movieName{
+	background: #00ace6;
+	margin: -25px auto 0px;
+	width: 95%;
+	height: auto;
+}
+.check{
+	font-size: 24px;
+	padding:25px 10px 0px;
+	color: white;
+	font-weight: bolder;
+}
+.date,.theater{
+	padding: 2px 10px;
+	font-size: 14px;
+	font-weight: bolder;
+}
+.theater{
+	padding-bottom: 9px;
+}
+.movieSeats{
+	background: #ebebe0;
+	width: 95%;
+	margin: -10px auto;
+	height: auto;
+	padding: 5px 10px;
+	/*border-top: 2px solid black;*/
+	border-top-style: dashed;
+	border-bottom-style: dashed;
+	font-weight: bolder;
+}
+.glyphicon{
+	font-size: 18px;
+	font-weight: bolder;
+}
+.barcode{
+	background: #00ace6;
+	width: 95%;
+	height: 250px;
+	margin: 10px auto;
+  text-align: center;
+}
+.barcodePic{
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background: red;
+	margin: 18% auto;
+	background-image: url("images/barcode.png");
+	background-size: cover;
+	
+}
+.circle{
+	background: #f5f5f0;
+	width:80px;
+	height:50px;
+	display: inline-block;
+	margin: 0px 190px;
+	border-radius: 100%
+
+}
+
+</style>

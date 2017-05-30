@@ -232,6 +232,13 @@ console.log("Inside action: ", query)
 // ==========================================================
 // === Function to reserve seat and update in database ==
 reserveSeat: function(req, res){
+	if(req.isAuthenticated()){
+console.log('Authenticated: ', req.session.passport)
+
+	} else {
+		console.log('not Authenticated')
+		res.redirect('/login')
+	}
 	var city = 'Ranchi';
 	var arr = req.body.seatNoH.split(',');
 	var seatNo =[];
@@ -258,7 +265,7 @@ City.findOne({city:city, hall: query.hall}, function(err, obj){
 	if(!obj){
 		console.log('city and hall not found')
 	} else {
-		console.log(obj);
+		// console.log(obj);
 for(var i=0;i<obj.movie.length;i++){
 if(obj.movie[i].time==query.time && obj.movie[i].screen==query.screen){
 index=i;
@@ -289,7 +296,10 @@ City.native(function (err, Collection){
 	}
 })
 	res.send(query)
-},
+},  // reserveSeat action closing
+
+
+
 
 };  // MODULE EXPORTS CLOSING ******************
 // *********************************************
