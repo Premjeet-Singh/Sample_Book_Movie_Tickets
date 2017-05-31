@@ -3,14 +3,12 @@
 <div style='font-size:20px'>
 	<p>Dear user, <br> Your ticket for the movie has booked with the following details: </p>
 
-<p><b>Movie: </b> <%=data.movieName%> | <%=data.language%> | <%=data.dimension%></p>
-<p><b>Hall: </b> <%=data.hall%></p>
-<p><b>Date: </b> <%=data.date%></p>
-<p><b>Time: </b> <%=data.time%></p>
-<p><b>Screen: </b> <%=data.screen%></p>
-<p><b>Seat No: </b> <%=data.seatNo%></p>
-<p><b>Ticket Price: </b> <%=data.total%></p>
-<p><b>Internet Fees: </b> <%=data.fees%></p>
-<p><b>Total Amount: </b> <%=data.subTotal%></p>
+<table style='border-collapse: collapse;border:2px solid black'>
+	<tr style='background:#53c653'>
+		<th style='border:1px solid black'><b>Movie</b></th> <th style='border:1px solid black'><b>Hall</b></th> <th style='border:1px solid black'><b>Date</b></th> <th style='border:1px solid black'><b>Time</b></th> <th style='border:1px solid black'><b>Screen</b></th> <th style='border:1px solid black'><b>Seat No</b></th> <th style='border:1px solid black'><b>Ticket Price</b></th> <th style='border:1px solid black'><b>Internet Fees</b></th> <th style='border:1px solid black'><b>Total Amount</b></th>
+	</tr>
+	<tr>
+		<td style='border:1px solid black'><%=data.movieName%> | <%=data.language%> | <%=data.dimension%></td> <td><%=data.hall%></td> <td style='border:1px solid black'><%=data.date%></td> <td style='border:1px solid black'><%=data.time%></td> <td style='border:1px solid black'><%=data.screen%></td> <td style='border:1px solid black'><%=data.seatNo%></td> <td style='border:1px solid black'>RS. <%=data.total%></td> <td style='border:1px solid black'>RS. <%=data.fees%></td> <td style='border:1px solid black'>RS. <%=data.subTotal%></td> 
+	</tr>
+</table>
 </div>
-

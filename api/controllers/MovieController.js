@@ -52,6 +52,8 @@ Movie.findOne({name: name}, function(err, movie){
 // === Function to get list of all movies ========================
 // GET route /movie
 movieList: function(req, res){
+	var city = req.query.city;
+	res.cookie('city', city, { expires: new Date(Date.now() + 2592000000), httpOnly: true, signed: true });
 	Movie.find({}, function(err, obj){
 		if(obj==''){
 			res.send("Movies not found")
@@ -90,9 +92,11 @@ movieParticular: function(req, res){
 
 // ================================================================
 // === Function to get Book Movie Page of particular movie
+// GET route /book/:name?city=ranchi
 getBookMovie: function(req, res){
 	var name = req.param('name');
-	var city = "Ranchi";
+	var city = req.signedCookies.city;
+	console.log('ciittyy: ', city)
 	var arr=[], json={};
 	Movie.findOne({name: name}, function(err, obj){
 		if(!obj){

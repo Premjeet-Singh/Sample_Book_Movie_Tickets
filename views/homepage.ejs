@@ -1,3 +1,387 @@
-<% include page/nav %>
 
-<h1>Home page</h1>
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+        <!-- <link rel="stylesheet" type="text/css" href="css/demo.css" /> -->
+        <!-- <link rel="stylesheet" type="text/css" href="css/style1.css" /> -->
+		<!-- // <script type="text/javascript" src="js/modernizr.custom.86080.js"></script> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <body id="page">
+    <!-- Navigation -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">BookMyShow</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+        <ul class="cb-slideshow">
+            <li><span>Image 01</span></li>
+            <li><span>Image 02</span></li>
+            <li><span>Image 03</span></li>
+            <li><span>Image 04</span></li>
+            <li><span>Image 05</span></li>
+            <li><span>Image 06</span></li>
+        </ul>
+
+<div class='city'>
+        
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon" style='background: #990000;'> CITY </div>
+      <input type="text" class="form-control inputCity" name='city' id="inputCity" placeholder="Ranchi">
+      <div class="input-group-addon last" style='background: #990000;' onclick='pickCity()'>SHOW MOVIE</div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class='footer'>
+    <p> SAMPLE_COPYRIGHT &copy; 2017. All Rights Reserved </p>
+</div>
+
+    </body>
+</html>
+
+<script>
+
+	var cityStored = localStorage.getItem('city');
+	if(cityStored!='' || cityStored!='undefined'){
+		document.querySelector('.inputCity').value = cityStored;
+	}
+
+function pickCity(){
+	
+		var city = document.querySelector('.inputCity').value;
+		if(city==''){
+			alert('First enter the city name')
+		} else {
+			// alert("City name: "+ city)
+			localStorage.setItem('city', city);
+			window.location = 'http://localhost:3000/movie?city='+city;
+		}
+}
+
+</script>
+<style>
+html,body,ul,li {
+    margin:0;
+    padding:0;
+}
+.last{
+    cursor: pointer;
+}
+body{
+    font-family: Constantia, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+    /*background: #000;*/
+    font-weight: 400;
+    font-size: 15px;
+    color: #aa3e03;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+ul,li {
+    list-style:none;
+}
+.navbar{
+    position: fixed;
+    width: 100%;
+    border-radius: 0px;
+}
+.city{
+    position: fixed;
+    background: #002233;
+    margin: 445px auto;
+    height: 120px;
+    width: 100%;    
+}
+.form-group{
+    margin:36px 290px;
+    width: 600px;
+    /*box-shadow: 0px 0px 25px #888888;*/
+}
+.input-group, #inputCity{
+    height: 50px;
+    border:1px solid #b30000;
+    border-radius: 0px;
+    /*box-shadow: 0px 0px 25px #990000;*/
+}
+#inputCity{
+    width: 500px;
+    font-size: 20px;
+    font-weight: bolder;
+    box-shadow: 10px 0px 25px #b30000;
+    color: #484A4A;
+    letter-spacing: 1px;
+}
+.input-group-addon{
+    border-radius: 0px;
+    border: none;
+    /*background: #b30000;*/
+    /*background: red;*/
+    width: 100px;
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+    box-shadow: 0px 0px 25px #b30000;
+
+}
+.footer{
+    position:fixed;
+    display: inline-block;
+    background: #282929;
+    margin: 565px auto;
+    height: 100px;
+    width:100%;
+}
+.footer p{
+    text-align: center;
+    margin: 36px;  
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+}
+.cb-slideshow,
+.cb-slideshow:after { 
+    margin: 52px 0px;
+    position: fixed;
+    width: 100%;
+    height: 60%;
+    top: 0px;
+    left: 0px;
+    z-index: 0; 
+    /*border: 12px solid #484A4A;*/
+}
+.cb-slideshow:after { 
+    content: '';
+    /*background: transparent url(images/pattern.png) repeat top left; */
+}
+.cb-slideshow li span { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: transparent;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: none;
+    opacity: 0;
+    z-index: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-animation: imageAnimation 18s linear infinite 0s;
+    -moz-animation: imageAnimation 18s linear infinite 0s;
+    -o-animation: imageAnimation 18s linear infinite 0s;
+    -ms-animation: imageAnimation 18s linear infinite 0s;
+    animation: imageAnimation 18s linear infinite 0s; 
+}
+/*.cb-slideshow li div { 
+    z-index: 1000;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    color: #fff;
+    -webkit-animation: titleAnimation 36s linear infinite 0s;
+    -moz-animation: titleAnimation 36s linear infinite 0s;
+    -o-animation: titleAnimation 36s linear infinite 0s;
+    -ms-animation: titleAnimation 36s linear infinite 0s;
+    animation: titleAnimation 36s linear infinite 0s; 
+}*/
+/*.cb-slideshow li div h3 { 
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    font-size: 240px;
+    padding: 0;
+    line-height: 200px; 
+}*/
+.cb-slideshow li:nth-child(1) span { 
+    background-image: url(images/slide/1.jpg) 
+}
+.cb-slideshow li:nth-child(2) span { 
+    background-image: url(images/slide/2.jpg);
+    -webkit-animation-delay: 3s;
+    -moz-animation-delay: 3s;
+    -o-animation-delay: 3s;
+    -ms-animation-delay: 3s;
+    animation-delay: 3s;
+}
+.cb-slideshow li:nth-child(3) span { 
+    background-image: url(images/slide/3.jpg);
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    -ms-animation-delay: 6s;
+    animation-delay: 6s;
+}
+.cb-slideshow li:nth-child(4) span { 
+    background-image: url(images/slide/4.jpg);
+    -webkit-animation-delay: 9s;
+    -moz-animation-delay: 9s;
+    -o-animation-delay: 9s;
+    -ms-animation-delay: 9s;
+    animation-delay: 9s;
+}
+.cb-slideshow li:nth-child(5) span { 
+    background-image: url(images/slide/5.jpg);
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s;
+}
+.cb-slideshow li:nth-child(6) span { 
+    background-image: url(images/slide/7.jpg);
+    -webkit-animation-delay: 15s;
+    -moz-animation-delay: 15s;
+    -o-animation-delay: 15s;
+    -ms-animation-delay: 15s;
+    animation-delay: 15s;
+}
+.cb-slideshow li:nth-child(2) div { 
+    -webkit-animation-delay: 3s;
+    -moz-animation-delay: 3s;
+    -o-animation-delay: 3s;
+    -ms-animation-delay: 3s;
+    animation-delay: 3s;
+}
+.cb-slideshow li:nth-child(3) div { 
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    -ms-animation-delay: 6s;
+    animation-delay: 6s; 
+}
+.cb-slideshow li:nth-child(4) div { 
+    -webkit-animation-delay: 9s;
+    -moz-animation-delay: 9s;
+    -o-animation-delay: 9s;
+    -ms-animation-delay: 9s;
+    animation-delay: 9s; 
+}
+.cb-slideshow li:nth-child(5) div { 
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s; 
+}
+.cb-slideshow li:nth-child(6) div { 
+    -webkit-animation-delay: 15s;
+    -moz-animation-delay: 15s;
+    -o-animation-delay: 15s;
+    -ms-animation-delay: 15s;
+    animation-delay: 15s;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+}
+/* Animation for the slideshow images */
+@-webkit-keyframes imageAnimation { 
+    0% { opacity: 0;
+    -webkit-animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         -webkit-animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-moz-keyframes imageAnimation { 
+    0% { opacity: 0;
+    -moz-animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         -moz-animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-o-keyframes imageAnimation { 
+    0% { opacity: 0;
+    -o-animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         -o-animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-ms-keyframes imageAnimation { 
+    0% { opacity: 0;
+    -ms-animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         -ms-animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@keyframes imageAnimation { 
+    0% { opacity: 0;
+    animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+/* Animation for the title */
+/*@-webkit-keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-moz-keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-o-keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-ms-keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}*/
+/* Show at least something when animations not supported */
+.no-cssanimations .cb-slideshow li span{
+    opacity: 1;
+}
+
+@media screen and (max-width: 1140px) { 
+    .cb-slideshow li div h3 { font-size: 140px }
+    
+    /*.city, .input-group, #inputCity, .input-group-addon { width: 70% }*/
+}
+@media screen and (max-width: 600px) { 
+    .cb-slideshow li div h3 { font-size: 80px }
+    /*.city, .input-group, #inputCity, .input-group-addon { width: 50% }*/
+}
+
+
+
+
+
+
+</style>
