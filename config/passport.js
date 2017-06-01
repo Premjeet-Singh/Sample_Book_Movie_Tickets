@@ -36,11 +36,9 @@ passport.use(new LocalStrategy({
           // Return 'returnUser' to AuthController Login function and store in session
           var returnUser = {
                 id: user.id,
-                fname: user.local.name.fname,
-                lname: user.local.name.lname,
+                name: user.local.name,
                 username: user.local.username,
                 email: user.local.email,
-                type: user.local.type,
                 phone: user.local.phone
             // createdAt: user.createdAt,
           };

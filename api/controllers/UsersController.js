@@ -21,6 +21,33 @@ bcrypt.hash(arr.password, 10, function(err, hash) {
 }
 
 
+function loginUser(user, req, res){
+
+    req.logIn(user, function(err) {          // get user data from passport.js returnUser variable
+            if (err) res.send(err);
+            // return res.send({
+            //     message: info.message,
+            //     user: user
+            // });
+        // ================================================
+        // set required user's info to session
+        req.session.passport.name = user.local.name;
+        req.session.passport.username = user.local.username;
+        req.session.passport.email = user.local.email;
+        req.session.passport.phone = user.local.phone;
+
+        // ================================================
+        // set required user's info to cookie
+        res.cookie('user', user, { expires: new Date(Date.now() + 60000), httpOnly: true, signed: true });
+
+        // res.send(200,{data: req.session.passport});
+        // res.send(200,{data: user});
+        res.redirect('/',{user: req.session.passport})
+
+        });  // req.logIn closing 
+
+}
+
 module.exports = {
 //  dummy function ===========
 	hi: function(req, res){
@@ -68,8 +95,7 @@ module.exports = {
   var query = {
         name : req.body.name, 
         username : req.body.username,               email : req.body.email, 
-        password: hash,                             dob: req.body.dob, 
-        phone: parseInt(req.body.phone),            gender: req.body.gender 
+        password: hash,                             phone: parseInt(req.body.phone) 
     };    // query closing
 
      console.log("Query: ", query)                                        
@@ -84,8 +110,8 @@ module.exports = {
                                                       }
                                                       res.send(err);
                                                     } else {
-
-                                                      res.send(200, {msg: user});
+loginUser(user, req, res);
+                                                      // res.send(200, {msg: user});
                                                       // res.json({user: user, token: sailsTokenAuth.issueToken({sid: user.id})});      // generate token... No need here
                                                     }
                                                   });   // create closing 
@@ -156,8 +182,8 @@ if(!req.signedCookies.token){
   //    =======  Password Forgot Function ( Using Token) ======
   //  ============================================================
 
-// POST  route /passwordforgot
-    passwordforgot: function(req, res){
+// POST  route /forgotpassword
+    forgotpassword: function(req, res){
       var email = req.body.email;
           Users.findOne({'local.email': email},function(err, userObj){
               if(userObj){
@@ -172,16 +198,18 @@ if(!req.signedCookies.token){
                                     // res.send(user);
                                     // console.log(req.headers.host);
                                     mailer.sendPasswordForgotMail(user);
-                                    res.json(200, {msg: "Email has been sent successfully" });
+                                    // res.json(200, {msg: "Email has been sent successfully" });
+                                    res.view('ok', {msg: "Email has been sent successfully" });
                               });
                         });
 
 
               } else {
-                res.json({status:404});
+                // res.json({status:404});
+                res.view('dataNotFound', {msg: 'Invalid email-id you have entered.'});
               }
               
-            });
+          });
 
   },
 

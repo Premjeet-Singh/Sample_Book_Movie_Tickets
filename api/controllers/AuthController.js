@@ -33,10 +33,8 @@ module.exports = {
                 // });
             // ================================================
             // set required user's info to session
-            req.session.passport.fname = user.fname;
-            req.session.passport.lname = user.lname;
+            req.session.passport.name = user.name;
             req.session.passport.username = user.username;
-            req.session.passport.type = user.type;
             req.session.passport.email = user.email;
             req.session.passport.phone = user.phone;
 
@@ -45,7 +43,8 @@ module.exports = {
             res.cookie('user', user, { expires: new Date(Date.now() + 60000), httpOnly: true, signed: true });
 
             // res.send(200,{data: req.session.passport});
-            res.send(200,{data: user});
+            // res.send(200,{data: user});
+            res.view('homepage',{user: req.session.passport})
 
             });  // req.logIn closing
 
@@ -94,6 +93,7 @@ module.exports = {
 // GET  route /logout
     logout: function(req, res) {
         req.logout();
+        req.session.destroy();
         res.redirect('/');
     }
 

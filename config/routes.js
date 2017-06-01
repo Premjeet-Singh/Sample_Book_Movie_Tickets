@@ -32,7 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /': { view: 'homepage' },
+  // 'GET /': { view: 'homepage' },
   'GET /register': { view: 'register' },
 
   'GET /login': { view: 'login' },
@@ -47,6 +47,7 @@ module.exports.routes = {
 
 //===========  routes for Movie Controller  ===================================
   'GET /movieupload': { view: 'uploader/movieUpload' },
+  'GET /': {controller: "movie", action: "home"},
   'POST /movieupload': {controller: "movie", action: "movieUpload"},
   'GET /movie': {controller: "movie", action: "movieList"},
   'GET /movie/:name': {controller: "movie", action: "movieParticular"},
@@ -73,6 +74,8 @@ module.exports.routes = {
   'POST /loginfirst': {controller: "auth", action: "loginFirst"},              //  updated using passport
   // 'GET /logout': {controller: "users", action: "logout"},                  // works well using token
   'GET /logout': {controller: "auth", action: "logout"},             //  updated using passport
+
+  'POST /forgotpassword': {controller: "users", action: "forgotpassword"},             //  updated using passport
 
 
 

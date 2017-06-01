@@ -6,6 +6,15 @@
  */
 
 module.exports = {
+
+// =====================================================
+// === Function to view homepage ==============
+home: function(req, res){
+	
+	res.view('homepage',{user:req.session.passport})
+},  // home action closing
+
+
 // =====================================================
 // === Function to Upload Movie details ============
 movieUpload: function(req, res){
@@ -157,7 +166,7 @@ chooseSeat: function(req, res){
 	    price = price.replace(/^[,\s]+|[,\s]+$/g, '');
 	    price = price.replace(/\s*,\s*/g, ',');
 	 	price = price.split(',').map(Number);
-var city = 'Ranchi';
+var city = req.signedCookies.city;
 	var query = {
 		date: req.body.dateH,
 		time: req.body.timeH,
@@ -237,7 +246,7 @@ console.log("Inside action: ", query)
 // === Function to reserve seat and update in database ==
 reserveSeat: function(req, res){
 	var owner = '58ea8204dc3d35dc16ce68e8';
-	var city = 'Ranchi';
+	var city = req.signedCookies.city;
 	var arr = req.body.seatNoH.split(',');
 	var seatNo =[];
 	for(var i = 0;i<parseInt(req.body.numH);i++){

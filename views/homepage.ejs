@@ -10,18 +10,97 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <body id="page">
     <!-- Navigation -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">BookMyShow</a>
+<% if(typeof(user)!='undefined') { %>
+    <% include page/nav %>
+<% } else { %>
+    <% include navLoggedOut %>
+<% } %>
+
+
+<!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button> -->
+
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/login" method='post'>
+    <h3>Login</h3>
+          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <div class="imgcontainer">
+      <img src="images/user.png" alt="User" class="avatar">
     </div>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
+    <div class="container">
+      <label><b>Username</b></label><br>
+      <input id='ip' type="text" placeholder="Enter Username" name="val" required><br>
+
+      <label><b>Password</b></label><br>
+      <input id='ip' type="password" placeholder="Enter Password" name="password" required><br>
+        
+      <button type="submit">Login</button><br>
+      <span onclick='check("fp")' class="psw"><a href="#">Forgot password?</a></span>
+      <span onclick='check("signup")' class="sign"><a href="#">Signup</a></span>
+    </div>
+
+<!--     <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div> -->
+  </form>
+</div>
+
+<!-- <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</button> -->
+
+<div id="id02" class="modal">
+  <form class="modal-content animate" action="/register" method='post'>
+    <h3>Register</h3>
+    <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <div class="container">
+      <label><b>Name</b></label><br>
+      <input id='ip' type="text" placeholder="Enter Name" name="name" required><br>
+      <label><b>Email</b></label><br>
+      <input id='ip' type="text" placeholder="Enter Email" name="email" required><br>
+
+      <label><b>Username</b></label><br>
+      <input id='ip' type="text" placeholder="Enter username" name="username" required><br>
+      <label><b>Password</b></label><br>
+      <input id='ip' type="password" placeholder="Enter Password" name="password" required><br>
+      <label><b>Phone</b></label><br>
+      <input id='ip' type="number" placeholder="Enter Phone no." name="phone" required><br>
+
+      <div class="clearfix">
+        <button type="submit" class="signupbtn">Sign Up</button><br>
+          <span onclick='check("fp")' class="psw"><a href="#">Forgot password?</a></span>
+          <span onclick='check("signin")' class="signin"><a href="#">Login</a></span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="id03" class="modal">
+  
+  <form class="modal-content animate" action="/forgotpassword" method='post'>
+    <h3>Forgot Password</h3>
+          <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <div class="imgcontainer">
+      <img src="images/fp.png" alt="Forgot Password" class="avatar">
+    </div>
+
+    <div class="container">
+      <label><b>Email</b></label><br>
+      <input id='ip' type="text" placeholder="Enter Email" name="email" required><br>
+        
+      <button type="submit">Submit</button><br>
+      <span onclick='check("signin")' class="signin"><a href="#">Login</a></span>
+      <span onclick='check("signup")' class="signfp"><a href="#">Signup</a></span>
+    </div>
+
+<!--     <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div> -->
+  </form>
+</div>
+
+
         <ul class="cb-slideshow">
             <li><span>Image 01</span></li>
             <li><span>Image 02</span></li>
@@ -31,17 +110,14 @@
             <li><span>Image 06</span></li>
         </ul>
 
-<div class='city'>
-        
+<div class='city'>        
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-addon" style='background: #990000;'> CITY </div>
       <input type="text" class="form-control inputCity" name='city' id="inputCity" placeholder="Ranchi">
       <div class="input-group-addon last" style='background: #990000;' onclick='pickCity()'>SHOW MOVIE</div>
-
     </div>
   </div>
-
 </div>
 
 <div class='footer'>
@@ -70,8 +146,43 @@ function pickCity(){
 		}
 }
 
+// Get the modal
+var modal = document.getElementById('id01');
+var modalS = document.getElementById('id02');
+var modalFP = document.getElementById('id03');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    if (event.target == modalS) {
+        modalS.style.display = "none";
+    }
+    if (event.target == modalFP) {
+        modalFP.style.display = "none";
+    }
+}
+ function check(x){
+    if(x=='signup') {
+        document.getElementById('id02').style.display='block';
+        document.getElementById('id01').style.display='none';      
+        document.getElementById('id03').style.display='none';      
+    } else if(x=='signin') {
+        document.getElementById('id01').style.display='block';
+        document.getElementById('id02').style.display='none';        
+        document.getElementById('id03').style.display='none';        
+    } else {
+        document.getElementById('id03').style.display='block';
+        document.getElementById('id02').style.display='none';        
+        document.getElementById('id01').style.display='none';
+    }
+ }
+
+
 </script>
 <style>
+
 html,body,ul,li {
     margin:0;
     padding:0;
@@ -85,7 +196,7 @@ body{
     font-weight: 400;
     font-size: 15px;
     color: #aa3e03;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     overflow-x: hidden;
 }
 ul,li {
@@ -280,8 +391,160 @@ ul,li {
     -moz-animation-delay: 15s;
     -o-animation-delay: 15s;
     -ms-animation-delay: 15s;
-    animation-delay: 15s;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    animation-delay: 15s;
 }
+/*=======*/
+/* Full-width input fields */
+/*input[type=text], input[type=password], input[type=number] {*/
+#ip {
+    width: 45%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #09858e;
+    color: white;
+    font-weight: bolder;
+    padding: 14px 20px;
+    margin: 8px 0 0 0;
+    border: none;
+    cursor: pointer;
+    width: 45%;
+}
+
+/*button:hover {
+    opacity: 0.8;
+}*/
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 15%;
+    border-radius: 50%;
+}
+
+.container {
+    height: auto;
+    padding: 16px;
+    overflow-x: hidden;
+}
+
+span.psw{
+    /*float: right;*/
+    padding-top: -25px;
+    margin: 0 335px 0px;
+}
+span.signfp {
+    /*float: right;*/
+    padding-top: -25px;
+    margin: 0 420px 0px;
+}
+span.sign, span.signin {
+    float: left;
+    padding-top: -25px;
+    margin: 0 0 0px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow-x: hidden; /* Enable scroll if needed */
+    overflow-y: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    padding-top: 20px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 5% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    min-height: 53%; /* Could be more or less, depending on screen size */
+    height: auto;
+    padding-bottom: 10px;
+
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: #4a4b4c;
+    font-weight: bolder;
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+h3{
+    text-align: center;
+    margin-bottom: 0px;
+    font-size: 28px;
+    color: #09858e;
+    font-weight: bold;
+}
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+/*=======*/
 /* Animation for the slideshow images */
 @-webkit-keyframes imageAnimation { 
     0% { opacity: 0;
