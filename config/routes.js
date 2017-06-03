@@ -39,6 +39,7 @@ module.exports.routes = {
   'GET /loginfirst': { view: 'loginFirst' },
   'GET /amount': { view: 'page/amountToPay' },
   'GET /ticket': { view: 'page/ticket' },
+  'GET /forgot': { view: 'forgotPassword' },
   // 'GET /movie': { view: 'page/movie' },
 
 

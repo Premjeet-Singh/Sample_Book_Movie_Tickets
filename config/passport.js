@@ -39,7 +39,8 @@ passport.use(new LocalStrategy({
                 name: user.local.name,
                 username: user.local.username,
                 email: user.local.email,
-                phone: user.local.phone
+                phone: user.local.phone,
+                type: user.local.type
             // createdAt: user.createdAt,
           };
           return done(null, returnUser, {

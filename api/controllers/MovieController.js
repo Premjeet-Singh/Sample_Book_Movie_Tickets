@@ -48,7 +48,8 @@ Movie.findOne({name: name}, function(err, movie){
 			}
 		})
 	} else {
-		res.send("Movie already exist")
+		// res.send("Movie already exist")
+		res.view('ok',{msg: "Movie already exist"})
 	}
 })
 
@@ -65,7 +66,8 @@ movieList: function(req, res){
 	res.cookie('city', city, { expires: new Date(Date.now() + 2592000000), httpOnly: true, signed: true });
 	Movie.find({}, function(err, obj){
 		if(obj==''){
-			res.send("Movies not found")
+			// res.send("Movies not found")
+			res.view('ok', {msg:"Movie not found"})
 		} else {
 			var name = [];
 			// var name = obj[0].name.split(" ")[0];
@@ -88,7 +90,8 @@ movieParticular: function(req, res){
 	var name = req.param('name');        // name is movie name
 	Movie.findOne({name: name}, function(err, obj){
 		if(!obj){
-			res.send("Movie Not Found")
+			// res.send("Movie Not Found")
+			res.view('ok', {msg:"Movie not found"})
 		} else {
 			var str= obj.name.split(" ")[0];
 			console.log("nm: ", str);
@@ -109,13 +112,15 @@ getBookMovie: function(req, res){
 	var arr=[], json={};
 	Movie.findOne({name: name}, function(err, obj){
 		if(!obj){
-			res.send("Movie not found");
+			// res.send("Movie not found");
+			res.view('ok', {msg:"Movie not found"})
 		} else {
 			var str= obj.name.split(" ")[0]; 
 			console.log("str: ", str)
 City.find({city:city},function(err, mvObj){
 	if(!mvObj){
-		res.send("movie not found in this city");
+		// res.send("movie not found in this city");
+			res.view('ok', {msg:"Movie not found"})
 	} else {
 // // var found = arr.filter(function(item) { return item.name === 'k1'; });
 for(var i=0;i<mvObj.length;i++){
@@ -245,7 +250,8 @@ console.log("Inside action: ", query)
 // ==========================================================
 // === Function to reserve seat and update in database ==
 reserveSeat: function(req, res){
-	var owner = '58ea8204dc3d35dc16ce68e8';
+	// var owner = '58ea8204dc3d35dc16ce68e8';
+	var owner = req.session.passport.user;
 	var city = req.signedCookies.city;
 	var arr = req.body.seatNoH.split(',');
 	var seatNo =[];

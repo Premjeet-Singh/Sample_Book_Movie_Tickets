@@ -65,7 +65,12 @@
       <input id='ip' type="password" placeholder="Enter Password" name="password" required><br>
       <label><b>Phone</b></label><br>
       <input id='ip' type="number" placeholder="Enter Phone no." name="phone" required><br>
-
+      <label for="sel1">Type</label><br>
+      <select class="form-control" id="type" name='type' required>
+        <option></option>
+        <option value='user'>USER</option>
+        <option value='hall'>HALL</option>
+      </select>
       <div class="clearfix">
         <button type="submit" class="signupbtn">Sign Up</button><br>
           <span onclick='check("fp")' class="psw"><a href="#">Forgot password?</a></span>
@@ -102,12 +107,12 @@
 
 
         <ul class="cb-slideshow">
-            <li><span>Image 01</span></li>
-            <li><span>Image 02</span></li>
-            <li><span>Image 03</span></li>
-            <li><span>Image 04</span></li>
-            <li><span>Image 05</span></li>
-            <li><span>Image 06</span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
         </ul>
 
 <div class='city'>        
@@ -396,13 +401,16 @@ ul,li {
 /*=======*/
 /* Full-width input fields */
 /*input[type=text], input[type=password], input[type=number] {*/
-#ip {
-    width: 45%;
+#ip, #type {
+    width: 44%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+}
+#type{
+    height: 45px;
 }
 
 /* Set a style for all buttons */
@@ -414,7 +422,8 @@ button {
     margin: 8px 0 0 0;
     border: none;
     cursor: pointer;
-    width: 45%;
+    width: 44%;
+    border-radius: 3px;
 }
 
 /*button:hover {

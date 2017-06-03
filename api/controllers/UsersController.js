@@ -35,6 +35,7 @@ function loginUser(user, req, res){
         req.session.passport.username = user.local.username;
         req.session.passport.email = user.local.email;
         req.session.passport.phone = user.local.phone;
+        req.session.passport.type = user.local.type;
 
         // ================================================
         // set required user's info to cookie
@@ -63,28 +64,28 @@ module.exports = {
 
       // Password length validation
       if(arr.password.length<4){
-        res.json({password_length: arr.password.length, msg: "password should atleast 4 character long"});
+        res.view('conflict',{password_length: arr.password.length, msg: "password should atleast 4 character long"});
         return;
       }
 
       //  first name, email, passowrd fields should not be empty
       if(!req.body.name || !req.body.email || !req.body.password){
-          return res.json(401, {err: 'username, email and password required'});
+          return res.view('conflict', {msg: 'username, email, type and password required'});
       } else {
             // check user-email already exist or not
               Users.findOne({'local.email':req.body.email}, function(err, useremail) {
                 if (useremail) {
-                  return res.json(409, {err: 'User email already exist'});       // if user email exist return 409 conflict err
+                  return res.view('conflict', {msg: 'User email already exist'});       // if user email exist return 409 conflict err
                 } else {
                       // check username already exist or not
                         Users.findOne({'local.username':req.body.username}, function(err, username) {
                             if (username) {
-                              return res.json(409, {err: 'Username already exist'});       // if username exist return 409 conflict err
+                              return res.view('conflict', {msg: 'Username already exist'});       // if username exist return 409 conflict err
                             } else {
                                 // check user phone already exist or not     
                                 Users.findOne({'local.phone':req.body.phone}, function(err, userphone) {
                                     if (userphone) {
-                                      return res.json(409, {err: 'User Phone already exist'});       // if user phone no. exist return 409 conflict err
+                                      return res.view('conflict', {msg: 'User Phone already exist'});       // if user phone no. exist return 409 conflict err
                                     } else {
                                              // hash function to encrypt password   
                                             hashPassword(arr, function(hash){     // calling hash function with password (arr) parameter
@@ -95,7 +96,8 @@ module.exports = {
   var query = {
         name : req.body.name, 
         username : req.body.username,               email : req.body.email, 
-        password: hash,                             phone: parseInt(req.body.phone) 
+        password: hash,                             phone: parseInt(req.body.phone),
+        type: req.body.type 
     };    // query closing
 
      console.log("Query: ", query)                                        
@@ -106,9 +108,9 @@ module.exports = {
                                                       if(err.ValidationError){
                                                         var e = validationError.determineError(query);
                                                         console.log("ValidationError ", e);
-                                                        return res.json(400,{err: e});
+                                                        return res.view('conflict', {msg: e});
                                                       }
-                                                      res.send(err);
+                                                      res.view('conflict', {msg: err});
                                                     } else {
 loginUser(user, req, res);
                                                       // res.send(200, {msg: user});
@@ -199,7 +201,7 @@ if(!req.signedCookies.token){
                                     // console.log(req.headers.host);
                                     mailer.sendPasswordForgotMail(user);
                                     // res.json(200, {msg: "Email has been sent successfully" });
-                                    res.view('ok', {msg: "Email has been sent successfully" });
+                                    res.view('ok', {msg: "Check your email to change password" });
                               });
                         });
 
@@ -223,7 +225,7 @@ if(!req.signedCookies.token){
 
       Users.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {      
         if (!user) {
-          res.send(400, {err: "User Not Found Or May, token has been expired"});
+          res.view('dataNotFound', {msg: "User Not Found Or token may has been expired"});
         } else {
             res.view('newForgot', {email: email, id: id, token: token});          
         }

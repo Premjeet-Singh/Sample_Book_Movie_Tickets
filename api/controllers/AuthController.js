@@ -37,6 +37,7 @@ module.exports = {
             req.session.passport.username = user.username;
             req.session.passport.email = user.email;
             req.session.passport.phone = user.phone;
+            req.session.passport.type = user.type;
 
             // ================================================
             // set required user's info to cookie

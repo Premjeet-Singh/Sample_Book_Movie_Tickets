@@ -1,0 +1,167 @@
+<body>
+	
+	<div class='title'>
+		<h2>Something Went Wrong . . .</h2>
+	</div>
+	<div class="imgContainer">
+		<img src="images/400.png" alt="Not Found">
+	</div>
+<!-- 	<div class='msg'>
+		<p><%=msg%></p>
+	</div>
+	<div class='deepshadow'>
+		<p><%=msg%></p>
+	</div>
+	<div class='area'>
+		<p><%=msg%></p>
+	</div> -->
+	<div class='container'>
+		<p class='flux'><%=msg%></p>
+	</div>
+</body>
+
+<style>
+
+body{
+	margin: 0;
+	padding: 0;
+	background: #0086e6;
+}
+.title{
+	width: 500px;
+	margin: 40px auto 0;
+	font-weight: bold;
+/* 	background: lightgreen; */
+}
+h2{
+	color: white;
+	text-align: center;
+	font-size: 22px;
+	font-weight: bolder;
+}
+.imgContainer{
+/* 	background: gray; */
+	width: 500px;
+	margin: 10px auto;
+}
+img{
+	display: block;
+  margin: 0 auto;
+	padding: 5px;
+	/*box-shadow: 0px 0px 60px #002d4d;*/
+}
+.msg{
+/* 	background: #1a9fff; */
+	width: 700px;
+	height: 100px;
+	margin: 30px auto;
+	padding: 5px 25px;
+	color: white;
+	font-size: 28px;
+	font-weight: bolder;
+	text-align: center
+}
+.deepshadow {
+    color: #fff;
+    /*background-color: #333;*/
+    letter-spacing: .1em;
+    font-size: 36px;
+    text-align: center;
+   text-shadow: 
+      -1px -1px 1px #111, 
+      2px 2px 1px #363636;
+  }
+
+
+.area {
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
+  letter-spacing: -7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: blur .75s ease-out infinite;
+  text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
+}
+
+@keyframes blur {
+  from {
+    text-shadow:0px 0px 10px #fff,
+      0px 0px 10px #fff, 
+      0px 0px 25px #fff,
+
+      0px 10px 100px #7B96B8,
+      0px -10px 100px #7B96B8,
+      0px -10px 100px #7B96B8;
+  }
+}
+
+@font-face {
+  font-family: neon;
+  src: url('http://mysite.co.uk/clients/reload/Images/style_159306.eot');
+}
+
+.container {
+  /*display: table-cell;*/
+  text-align: center;
+  margin-top: 30px;
+  /*vertical-align: middle;*/
+  /*background: gray;*/
+}
+
+.neon {
+  font-family: neon;
+  color: #FB4264;
+  font-size: 9vw;
+  line-height: 9vw;
+  text-shadow: 0 0 3vw #F40A35;
+}
+
+.flux {
+  /*font-family: neon;*/
+  color: red;
+  font-size: 48px;
+  /*line-height: 9vw;*/
+  text-shadow: 0 0 3vw #fff;
+  font-weight: bold;
+}
+
+.neon {
+  animation: neon 1s ease infinite;
+  -moz-animation: neon 1s ease infinite;
+  -webkit-animation: neon 1s ease infinite;
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
+    color: #FED128;
+  }
+  50% {
+    text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
+    color: #806914;
+  }
+}
+
+.flux {
+  animation: flux 2s linear infinite;
+  -moz-animation: flux 2s linear infinite;
+  -webkit-animation: flux 2s linear infinite;
+  -o-animation: flux 2s linear infinite;
+}
+
+@keyframes flux {
+  0%,
+  100% {
+    text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
+    color: red;
+  }
+  50% {
+    text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
+    color: red;
+  }
+}
+
+
+</style>
