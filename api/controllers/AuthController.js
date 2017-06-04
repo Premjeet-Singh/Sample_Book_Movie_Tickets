@@ -20,10 +20,8 @@ module.exports = {
 
         passport.authenticate('local', function(err, user, info) {
             if ((err) || (!user)) {
-                return res.send({
-                    message: info.message,
-                    user: user
-                });
+                // return res.send({ message: info.message, user: user });
+                return res.view('conflict', { msg: info.message});
             }
             req.logIn(user, function(err) {          // get user data from passport.js returnUser variable
                 if (err) res.send(err);

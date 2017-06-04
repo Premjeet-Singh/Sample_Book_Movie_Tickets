@@ -191,7 +191,8 @@ if(!req.signedCookies.token){
               if(userObj){
                 var token = sailsTokenAuth.issueToken({sid: userObj.id});
                 // console.log(userObj);
-                var expDate = Date.now() + 300000;
+                // var expDate = Date.now() + 3000000;
+                var expDate = Date.now() + 2592000000;
 
                 //  set token and expiry time of token for changing password
                       Users.native(function (err, Collection){
@@ -225,9 +226,9 @@ if(!req.signedCookies.token){
 
       Users.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {      
         if (!user) {
-          res.view('dataNotFound', {msg: "User Not Found Or token may has been expired"});
+          res.view('dataNotFound', {msg: "User not found or token may has been expired"});
         } else {
-            res.view('newForgot', {email: email, id: id, token: token});          
+            res.view('forgotPassword', {email: email, id: id, token: token});          
         }
       });
 
@@ -235,26 +236,26 @@ if(!req.signedCookies.token){
     },
 // ====================================================================
 //   Update password to database by verifying email, id and token  ===
-// POST route /reset/:email/:id/:token
+// POST route /reset
       verifyforgotp: function(req, res){
-      var email = req.param('email');
-      var id = req.param('id');
+      var email = req.body.email;
+      var id = req.body.id;
       var password = req.body.newPassword;
-      var token = req.param('token');
+      var token = req.body.token;
       var arr = {password : password};
 
         Users.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
           if (!user) {
-            res.send("User Not Found Or May token has been expired");
+            res.view('dataNotFound', {msg: "User not found or token may has been expired"});
           }
 
             hashPassword(arr, function(hash){
-                  Users.update({resetPasswordToken: token, id: id}, {'local.password': hash, resetPasswordToken: undefined, resetPasswordExpires: undefined}, function (err, updated){
+                  Users.update({resetPasswordToken: token, id: id}, {'local.password': hash, resetPasswordToken: null, resetPasswordExpires: null}, function (err, updated){
                       if(updated!=""){
-                          res.send("  Password Changed Successfully...!!");
+                          res.view('ok', {msg: " Password Changed Successfully...!!"});
 
                       } else {
-                        res.send("One Time Link has been Expired.. !!!...Try Again..!!!");
+                        res.view('conflict', {msg: "One Time Link has been Expired.. !!!...Try Again..!!!"});
                       }
                 });
             });

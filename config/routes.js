@@ -35,7 +35,7 @@ module.exports.routes = {
   // 'GET /': { view: 'homepage' },
   'GET /register': { view: 'register' },
 
-  'GET /login': { view: 'login' },
+  // 'GET /login': { view: 'login' },
   'GET /loginfirst': { view: 'loginFirst' },
   'GET /amount': { view: 'page/amountToPay' },
   'GET /ticket': { view: 'page/ticket' },
@@ -77,7 +77,8 @@ module.exports.routes = {
   'GET /logout': {controller: "auth", action: "logout"},             //  updated using passport
 
   'POST /forgotpassword': {controller: "users", action: "forgotpassword"},             //  updated using passport
-
+  'GET /reset/:email/:id/:token': {controller: "users", action: "verifyforgot"},             //  updated using passport
+  'POST /reset': {controller: "users", action: "verifyforgotp"},             //  updated using passport
 
 
 

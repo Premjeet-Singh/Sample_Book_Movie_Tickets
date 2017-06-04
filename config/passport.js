@@ -24,14 +24,14 @@ passport.use(new LocalStrategy({
     // Users.findOne({ 'local.email': email }, function (err, user) {        // login by email of user
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
+        return done(null, false, { message: 'Incorrect email you have entered.' });
       }
       // console.log("user info: ", user);
 
       bcrypt.compare(password, user.local.password, function (err, res) {
           if (!res)
             return done(null, false, {
-              message: 'Invalid Password'
+              message: 'Password is invalid.'
             });
           // Return 'returnUser' to AuthController Login function and store in session
           var returnUser = {

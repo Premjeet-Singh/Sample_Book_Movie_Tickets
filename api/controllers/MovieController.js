@@ -102,7 +102,7 @@ movieParticular: function(req, res){
 },
 
 
-// ================================================================
+// ================================================================ 
 // === Function to get Book Movie Page of particular movie
 // GET route /book/:name?city=ranchi
 getBookMovie: function(req, res){
