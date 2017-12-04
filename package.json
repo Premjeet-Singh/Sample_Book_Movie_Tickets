@@ -1,5 +1,5 @@
 {
-  "name": "justintern2",
+  "name": "sampleBookMovieTicket",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
@@ -9,7 +9,7 @@
     "bootstrap-material-design": "^0.5.10",
     "concat-map": "0.0.1",
     "cropit": "^0.5.1",
-    "ejs": "2.3.4",
+    // "ejs": "2.3.4",
     "ejs-var": "^1.0.0",
     "fs": "0.0.1-security",
     "grunt": "1.0.1",
@@ -50,10 +50,6 @@
     "start": "node app.js"
   },
   "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/anonymous node/sails user/justintern2.git"
-  },
   "author": "anonymous node/sails user",
   "license": "",
   "devDependencies": {
